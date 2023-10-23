@@ -5,7 +5,7 @@
 </div>
 <br>
 
-[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.Antivirus/quarkus-antivirus?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkiverse.Antivirus/quarkus-antivirus)
+[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.antivirus/quarkus-antivirus?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkiverse.antivirus/quarkus-antivirus)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![Build](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml)
 
