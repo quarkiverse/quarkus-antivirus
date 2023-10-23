@@ -13,7 +13,7 @@ A Quarkus extension that lets you scan files for viruses using a pluggable engin
 
 Out of the box these engines are supported by this extension:
 - [ClamAV](https://www.clamav.net/) which is a Linux Native antivirus server
-- [VirusTotal](https://www.virustotal.com/gui/home/upload) which is a REST API to check the Hash of a file to see if it has already been reported for viruses
+- [VirusTotal](https://www.virustotal.com/) which is a REST API to check the Hash of a file to see if it has already been reported for viruses
 
 ## Getting started
 
@@ -49,7 +49,7 @@ Or add to you pom.xml directly:
 Now that you configured your POM to use the service, now you need to configure which scanner(s) you want to use in `application.properties`:
 
 ### ClamAV
-ClamAV is an open source Linux based virus scanning engine.
+[ClamAV](https://www.clamav.net/) is an open source Linux based virus scanning engine. If you configure `quarkus.antivirus.clamav.devservice.enabled=true` a DevService will start a ClamAV instance for you on TCP port 3310, so you can test locally during development.
 ```properties
 quarkus.antivirus.clamav.enabled=true
 quarkus.antivirus.clamav.devservice.enabled=true
@@ -60,7 +60,7 @@ quarkus.antivirus.clamav.port=3310
 
 ### VirusTotal
 
-VirusTotal is a REST API that analyses suspicious files to detect malware using over 70 antivirus scanners.  VirusTotal checks the hash of a file to see if it has been scanned and what the results are.  You can set the threshold of how many of the 70+ engines you want to report the file as malicious before you consider it a malicious file using the `minimum-votes` property.
+[VirusTotal](https://www.virustotal.com/) is a REST API that analyses suspicious files to detect malware using over 70 antivirus scanners.  VirusTotal checks the hash of a file to see if it has been scanned and what the results are.  You can set the threshold of how many of the 70+ engines you want to report the file as malicious before you consider it a malicious file using the `minimum-votes` property.
 ```properties
 quarkus.antivirus.virustotal.enabled=true
 quarkus.antivirus.virustotal.key=<YOUR API KEY>

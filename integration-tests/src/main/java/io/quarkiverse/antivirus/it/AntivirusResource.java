@@ -1,7 +1,11 @@
 package io.quarkiverse.antivirus.it;
 
-import io.quarkiverse.antivirus.runtime.Antivirus;
-import io.quarkiverse.antivirus.runtime.AntivirusException;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
@@ -12,14 +16,12 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
 import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import io.quarkiverse.antivirus.runtime.Antivirus;
+import io.quarkiverse.antivirus.runtime.AntivirusException;
 
 @Path("/antivirus")
 @Produces(MediaType.APPLICATION_JSON)
