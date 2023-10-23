@@ -32,11 +32,11 @@ Read the full [Antivirus documentation](https://docs.quarkiverse.io/quarkus-anti
 
 Create a new Antivirus project (with a base Antivirus starter code):
 
-- With [code.quarkus.io](https://code.quarkus.io/?a=Antivirus-bowl&j=17&e=io.quarkiverse.Antivirus%3Aquarkus-antivirus)
+- With [code.quarkus.io](https://code.quarkus.io/?a=Antivirus-bowl&j=17&e=io.quarkiverse.antivirus%3Aquarkus-antivirus)
 - With the [Quarkus CLI](https://quarkus.io/guides/cli-tooling):
 
 ```bash
-quarkus create app Antivirus-app -x=io.quarkiverse.Antivirus:quarkus-antivirus
+quarkus create app antivirus-app -x=io.quarkiverse.antivirus:quarkus-antivirus
 ```
 Or add to you pom.xml directly:
 
