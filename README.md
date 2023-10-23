@@ -1,7 +1,4 @@
 <div align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 <img src="https://github.com/quarkiverse/quarkus-antivirus/blob/main/docs/modules/ROOT/assets/images/quarkus.svg" width="67" height="70" ><img src="https://github.com/quarkiverse/quarkus-antivirus/blob/main/docs/modules/ROOT/assets/images/plus-sign.svg" height="70" ><img src="https://github.com/quarkiverse/quarkus-antivirus/blob/main/docs/modules/ROOT/assets/images/antivirus-protection-icon.svg" height="70" >
 
 # Quarkus Antivirus
@@ -11,6 +8,10 @@
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.antivirus/quarkus-antivirus?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkiverse.antivirus/quarkus-antivirus)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![Build](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml)
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 A Quarkus extension that lets you scan files for viruses using a pluggable engine architecture.
 
