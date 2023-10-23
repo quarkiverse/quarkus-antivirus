@@ -98,9 +98,7 @@ public class AntivirusResource {
 
             // write the file out to disk
             final File tempFile = File.createTempFile("fileName", "tmp");
-            tempFile.deleteOnExit();
-            FileOutputStream outputStream = new FileOutputStream(tempFile);
-            IOUtils.copy(inputStream, outputStream);
+            IOUtils.copy(inputStream, new FileOutputStream(tempFile));
         } catch (AntivirusException | IOException e) {
             throw new BadRequestException(e);
         }
