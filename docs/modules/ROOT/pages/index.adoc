@@ -2,7 +2,12 @@
 
 include::./includes/attributes.adoc[]
 
-TIP: Describe what the extension does here.
+A Quarkus extension that lets you scan files for viruses using a pluggable engine architecture.
+
+Out of the box these engines are supported by this extension:
+
+* https://www.clamav.net/[ClamAV] which is a Linux Native antivirus server
+* https://www.virustotal.com/[VirusTotal] which is a REST API to check the Hash of a file to see if it has already been reported for viruses
 
 == Installation
 
@@ -19,9 +24,108 @@ For instance, with Maven, add the following dependency to your POM file:
 </dependency>
 ----
 
+== Configuration
+
+Now that you configured your POM to use the service, now you need to configure which scanner(s) you want to use in `application.properties`:
+
+=== ClamAV
+https://www.clamav.net/[ClamAV] is an open source Linux based virus scanning engine. If you configure `quarkus.antivirus.clamav.devservice.enabled=true` a DevService will start a ClamAV instance for you on TCP port 3310, so you can test locally during development.
+
+[source,properties]
+----
+quarkus.antivirus.clamav.enabled=true
+quarkus.antivirus.clamav.health.enabled=true
+%dev.quarkus.antivirus.clamav.devservice.enabled=true
+%dev.quarkus.antivirus.clamav.host=localhost
+%dev.quarkus.antivirus.clamav.port=3310
+----
+
+=== VirusTotal
+https://www.virustotal.com/[VirusTotal] is a REST API that analyses suspicious files to detect malware using over 70 antivirus scanners.  VirusTotal checks the hash of a file to see if it has been scanned and what the results are.  You can set the threshold of how many of the 70+ engines you want to report the file as malicious before you consider it a malicious file using the `minimum-votes` property.
+
+[source,properties]
+----
+quarkus.antivirus.virustotal.enabled=true
+quarkus.antivirus.virustotal.key=<YOUR API KEY>
+quarkus.antivirus.virustotal.minimum-votes=1
+----
+
+== Usage
+Simply inject the `Antivirus` service, and it will run the scan against all configured services.  It works against `InputStream` so it can be used in any Quarkus application it is not constrained to REST applications only.
+
+[source,java]
+----
+@Path("/antivirus")
+@ApplicationScoped
+public class AntivirusResource {
+
+    @Inject
+    Antivirus antivirus;
+
+    @PUT
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/upload")
+    public Response upload(@MultipartForm @Valid final UploadRequest fileUploadRequest) {
+        final String fileName = fileUploadRequest.getFileName();
+        final InputStream data = fileUploadRequest.getData();
+        try {
+            // copy the stream to make it resettable
+            final ByteArrayInputStream inputStream = new ByteArrayInputStream(
+                    IOUtils.toBufferedInputStream(data).readAllBytes());
+
+            // scan the file it will throw AntiVirusException if virus found
+            antivirus.scan(fileName, inputStream);
+
+            // reset the stream
+            inputStream.reset();
+
+            // write the file out to disk
+            final File tempFile = File.createTempFile("fileName", "tmp");
+            IOUtils.copy(inputStream, new FileOutputStream(tempFile));
+        } catch (AntivirusException | IOException e) {
+            throw new BadRequestException(e);
+        }
+
+        return Response.ok().build();
+    }
+}
+----
+
+== Pluggable
+We can't anticipate every antivirus engine out there and some may be proprietary.  However, the architecture is designed to be pluggable, so you can plug your own engine in.  Simply produce a bean that extends the `AntivirusEngine` interface and it will be picked up and used.
+
+[source,java]
+----
+@ApplicationScoped
+public class MyCustomEngine implements AntivirusEngine {
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public void scan(final String filename, final InputStream inputStream) {
+        // scan your file here
+    }
+}
+----
+
+== Dev UI
+The Dev UI will let you inspect the running ClamAV Dev Service.
+
+image::antivirus-card.png[Antivirus DevUI Card]
+
+You can also inspect the container image that was started under Dev Services:
+
+image::antivirus-devservice.png[Antivirus Dev Service]
+
+You can view all of ClamAV's container logs right in the DevUI log.
+
+image::antivirus-logs.png[Antivirus Logs]
+
 [[extension-configuration-reference]]
 == Extension Configuration Reference
-
-TIP: Remove this section if you don't have Quarkus configuration properties in your extension.
 
 include::includes/quarkus-antivirus.adoc[leveloffset=+1, opts=optional]
