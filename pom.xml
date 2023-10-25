@@ -8,7 +8,7 @@
   </parent>
   <groupId>io.quarkiverse.antivirus</groupId>
   <artifactId>quarkus-antivirus-parent</artifactId>
-  <version>0.0.3</version>
+  <version>999-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Quarkus Antivirus - Parent</name>
   <description>Virus scan files using ClamAV or VirusTotal</description>
@@ -21,7 +21,7 @@
     <connection>scm:git:git@github.com:quarkiverse/quarkus-antivirus.git</connection>
     <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-antivirus.git</developerConnection>
     <url>https://github.com/quarkiverse/quarkus-antivirus</url>
-    <tag>0.0.3</tag>
+    <tag>HEAD</tag>
   </scm>
   <properties>
     <compiler-plugin.version>3.11.0</compiler-plugin.version>
