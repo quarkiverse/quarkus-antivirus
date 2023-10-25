@@ -11,7 +11,7 @@ import io.smallrye.config.WithName;
  * <p>
  * Find more info about ClamAV on <a href="https://www.clamav.net/">https://www.clamav.net/</a>.
  */
-@ConfigMapping(prefix = "quarkus.antivirus.clamav")
+@ConfigMapping(prefix = "quarkus.antivirus")
 @ConfigRoot(phase = ConfigPhase.BUILD_TIME)
 public interface ClamAVBuildConfig {
 
@@ -29,42 +29,42 @@ public interface ClamAVBuildConfig {
      * If Dev Services for ClamAV has been explicitly enabled or disabled. Dev Services are generally enabled
      * by default, unless there is an existing configuration present.
      */
-    @WithName("devservice.enabled")
+    @WithName("clamav.devservice.enabled")
     @WithDefault("false")
     boolean enabled();
 
     /**
      * The ClamAV container image to use.
      */
-    @WithName("devservice.image-name")
+    @WithName("clamav.devservice.image-name")
     @WithDefault(DEFAULT_IMAGE)
     String imageName();
 
     /**
      * The ClamAV container image to use.
      */
-    @WithName("devservice.startup-timeout")
+    @WithName("clamav.devservice.startup-timeout")
     @WithDefault("1800")
     Integer startupTimeout();
 
     /**
      * Flag to enable the FreshClam daemon to update the virus database daily. Default it is disabled.
      */
-    @WithName("devservice.fresh-clam")
+    @WithName("clamav.devservice.fresh-clam")
     @WithDefault("false")
     boolean freshClam();
 
     /**
      * Enable or disable ClamAV container logging
      */
-    @WithName("devservice.logging")
+    @WithName("clamav.devservice.logging")
     @WithDefault("true")
     boolean logging();
 
     /**
      * If ClamAv registers in the health check by pinging the service.
      */
-    @WithName("health.enabled")
+    @WithName("clamav.health.enabled")
     @WithDefault("true")
     boolean healthEnabled();
 

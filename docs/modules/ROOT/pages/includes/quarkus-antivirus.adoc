@@ -1,0 +1,301 @@
+
+:summaryTableId: quarkus-antivirus
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[[quarkus-antivirus_configuration]]link:#quarkus-antivirus_configuration[Configuration property]
+
+h|Type
+h|Default
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.enabled]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.enabled[quarkus.antivirus.clamav.devservice.enabled]`
+
+
+[.description]
+--
+If Dev Services for ClamAV has been explicitly enabled or disabled. Dev Services are generally enabled by default, unless there is an existing configuration present.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.image-name]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.image-name[quarkus.antivirus.clamav.devservice.image-name]`
+
+
+[.description]
+--
+The ClamAV container image to use.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_IMAGE_NAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_IMAGE_NAME+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|`clamav/clamav`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.startup-timeout]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.startup-timeout[quarkus.antivirus.clamav.devservice.startup-timeout]`
+
+
+[.description]
+--
+The ClamAV container image to use.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_STARTUP_TIMEOUT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_STARTUP_TIMEOUT+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|`1800`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.fresh-clam]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.fresh-clam[quarkus.antivirus.clamav.devservice.fresh-clam]`
+
+
+[.description]
+--
+Flag to enable the FreshClam daemon to update the virus database daily. Default it is disabled.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_FRESH_CLAM+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_FRESH_CLAM+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.logging]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.logging[quarkus.antivirus.clamav.devservice.logging]`
+
+
+[.description]
+--
+Enable or disable ClamAV container logging
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_LOGGING+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_LOGGING+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.health.enabled]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.health.enabled[quarkus.antivirus.clamav.health.enabled]`
+
+
+[.description]
+--
+If ClamAv registers in the health check by pinging the service.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_HEALTH_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_HEALTH_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.clamav.enabled]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.enabled[quarkus.antivirus.clamav.enabled]`
+
+
+[.description]
+--
+Property to enable or disable the virus scanner. Useful for developers who don't want to scan files locally.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.clamav.host]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.host[quarkus.antivirus.clamav.host]`
+
+
+[.description]
+--
+The IP Address of the machine where ClamAV is running.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_HOST+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_HOST+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|`localhost`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.clamav.port]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.port[quarkus.antivirus.clamav.port]`
+
+
+[.description]
+--
+The Port of the machine where ClamAV is running.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_PORT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_PORT+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|`3310`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.clamav.scan-timeout]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.scan-timeout[quarkus.antivirus.clamav.scan-timeout]`
+
+
+[.description]
+--
+The timeout of how much time to give CLamAV to scan the virus before failing.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_SCAN_TIMEOUT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_SCAN_TIMEOUT+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|`60000`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.clamav.chunk-size]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.chunk-size[quarkus.antivirus.clamav.chunk-size]`
+
+
+[.description]
+--
+Size in bytes of the chunks of data to stream to the scanner at a time.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_CHUNK_SIZE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_CHUNK_SIZE+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|`10240`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.clamav.ping-timeout]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.ping-timeout[quarkus.antivirus.clamav.ping-timeout]`
+
+
+[.description]
+--
+The timeout of how much time to give CLamAV to scan the virus before failing.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_PING_TIMEOUT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_PING_TIMEOUT+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|`2000`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.virustotal.enabled]]`link:#quarkus-antivirus_quarkus.antivirus.virustotal.enabled[quarkus.antivirus.virustotal.enabled]`
+
+
+[.description]
+--
+Property to enable or disable the virus scanner. Useful for developers who don't want to scan files locally.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.virustotal.url]]`link:#quarkus-antivirus_quarkus.antivirus.virustotal.url[quarkus.antivirus.virustotal.url]`
+
+
+[.description]
+--
+The API endpoint for VirusTotal.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_URL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_URL+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|`https://www.virustotal.com/api/v3/files/%s`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.virustotal.key]]`link:#quarkus-antivirus_quarkus.antivirus.virustotal.key[quarkus.antivirus.virustotal.key]`
+
+
+[.description]
+--
+The API key for VirusTotal.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_KEY+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_KEY+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.virustotal.minimum-votes]]`link:#quarkus-antivirus_quarkus.antivirus.virustotal.minimum-votes[quarkus.antivirus.virustotal.minimum-votes]`
+
+
+[.description]
+--
+VirusTotal checks over 70{plus} different engine for virus and collates a count of how many of those 70 reported a file as malicious. This number lets you control how many engines have to report a file is malicious to raise an exception.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_MINIMUM_VOTES+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_MINIMUM_VOTES+++`
+endif::add-copy-button-to-env-var[]
+--|int 
+|`1`
+
+
+a| [[quarkus-antivirus_quarkus.antivirus.virustotal.allow-unknown]]`link:#quarkus-antivirus_quarkus.antivirus.virustotal.allow-unknown[quarkus.antivirus.virustotal.allow-unknown]`
+
+
+[.description]
+--
+VirusTotal returns a 404 if their database has no information about the file being scanned. This flag allows for control over whether an exception should be thrown in this scenario or whether it can be ignored as a safe file.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_ALLOW_UNKNOWN+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_ALLOW_UNKNOWN+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+|===

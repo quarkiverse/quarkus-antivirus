@@ -1,5 +1,5 @@
 name: quarkus-antivirus
-title: Quarkus Antivirus
+title: Antivirus
 version: dev
 nav:
   - modules/ROOT/nav.adoc
