@@ -55,6 +55,13 @@ public interface ClamAVBuildConfig {
     boolean freshClam();
 
     /**
+     * Enable or disable ClamAV container logging
+     */
+    @WithName("devservice.logging")
+    @WithDefault("true")
+    boolean logging();
+
+    /**
      * If ClamAv registers in the health check by pinging the service.
      */
     @WithName("health.enabled")

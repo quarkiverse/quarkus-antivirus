@@ -48,7 +48,9 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
                 "/etc/clamav/clamd.conf");
 
         // forward the container logs
-        super.withLogConsumer(new JbossContainerLogConsumer(log).withPrefix(NAME));
+        if (config.logging()) {
+            super.withLogConsumer(new JbossContainerLogConsumer(log).withPrefix(NAME));
+        }
     }
 
     @Override
