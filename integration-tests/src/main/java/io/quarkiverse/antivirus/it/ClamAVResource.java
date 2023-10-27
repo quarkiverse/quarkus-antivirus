@@ -16,6 +16,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -24,11 +25,12 @@ import org.apache.commons.lang3.time.StopWatch;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import io.quarkiverse.antivirus.runtime.AntivirusException;
+import io.quarkiverse.antivirus.runtime.AntivirusScanResult;
 import io.quarkiverse.antivirus.runtime.ClamAVEngine;
 import lombok.extern.jbosslog.JBossLog;
 
 @Path("/clamav")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.MEDIA_TYPE_WILDCARD)
 @Consumes(MediaType.MEDIA_TYPE_WILDCARD)
 @ApplicationScoped
 @JBossLog
@@ -41,7 +43,11 @@ public class ClamAVResource {
     @Path("/valid")
     public String scanValid() {
         byte[] file = "Hello antivirus".getBytes(StandardCharsets.UTF_8);
-        engine.scan("valid.txt", new ByteArrayInputStream(file));
+
+        AntivirusScanResult result = engine.scan("valid.txt", new ByteArrayInputStream(file));
+        if (result.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new WebApplicationException(result.getMessage(), result.getStatus());
+        }
         return "File is valid!";
     }
 
@@ -49,7 +55,10 @@ public class ClamAVResource {
     @Path("/invalid")
     public String scanInvalid() {
         byte[] file = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*".getBytes(StandardCharsets.UTF_8);
-        engine.scan("invalid.txt", new ByteArrayInputStream(file));
+        AntivirusScanResult result = engine.scan("invalid.txt", new ByteArrayInputStream(file));
+        if (result.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new WebApplicationException(result.getMessage(), result.getStatus());
+        }
         return "File is invalid!";
     }
 
@@ -66,7 +75,10 @@ public class ClamAVResource {
         try {
             final ByteArrayInputStream inputStream = new ByteArrayInputStream(
                     IOUtils.toBufferedInputStream(data).readAllBytes());
-            engine.scan(fileName, inputStream);
+            AntivirusScanResult result = engine.scan(fileName, inputStream);
+            if (result.getStatus() != Response.Status.OK.getStatusCode()) {
+                throw new WebApplicationException(result.getMessage(), result.getStatus());
+            }
             inputStream.reset();
 
             // write the file out to disk

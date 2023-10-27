@@ -48,13 +48,4 @@ public interface VirusTotalRuntimeConfig {
     @WithName("virustotal.minimum-votes")
     @WithDefault("1")
     Integer minimumVotes();
-
-    /**
-     * VirusTotal returns a 404 if their database has no information about the file being scanned. This flag allows for
-     * control over whether an exception should be thrown in this scenario or whether it can be ignored as a safe file.
-     */
-    @WithName("virustotal.allow-unknown")
-    @WithDefault("true")
-    boolean allowUnknown();
-
 }

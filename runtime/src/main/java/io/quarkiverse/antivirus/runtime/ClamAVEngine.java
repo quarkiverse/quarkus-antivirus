@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-import org.jboss.logging.Logger;
+import lombok.extern.jbosslog.JBossLog;
 
 /**
  * {@link AntivirusEngine} implementation for ClamAV Daemon.
@@ -15,9 +15,8 @@ import org.jboss.logging.Logger;
  * Find more info about ClamAV on <a href="https://www.clamav.net/">https://www.clamav.net/</a>.
  */
 @ApplicationScoped
+@JBossLog
 public class ClamAVEngine implements AntivirusEngine {
-
-    private static final Logger LOG = Logger.getLogger(ClamAVEngine.class);
     private ClamAVClient client;
     @Inject
     ClamAVRuntimeConfig config;
@@ -32,34 +31,35 @@ public class ClamAVEngine implements AntivirusEngine {
      *
      * @param filename the name of the file to be scanned
      * @param inputStream the {@link InputStream} of the file to scan
+     * @return the {@link AntivirusScanResult} containing the results
      */
     @Override
-    public void scan(final String filename, final InputStream inputStream) {
+    public AntivirusScanResult scan(final String filename, final InputStream inputStream) {
+        AntivirusScanResult.AntivirusScanResultBuilder result = AntivirusScanResult.builder().engine("ClamAV")
+                .fileName(filename);
         if (!config.enabled()) {
-            LOG.debug("ClamAV scanner is currently disabled!");
-            return;
+            return result.status(404).message("ClamAV scanner is currently disabled!").build();
         }
-        LOG.infof("Starting the virus scan for file: %s", filename);
+        log.infof("Starting the virus scan for file: %s", filename);
 
         try {
             final ClamAVClient client = getClamAVClient();
             final byte[] reply = client.scan(inputStream);
             final String message = new String(reply, StandardCharsets.US_ASCII).trim();
-            LOG.infof("Scanner replied with message: %s", message);
+            log.infof("Scanner replied with message: %s", message);
             if (!ClamAVClient.isCleanReply(reply)) {
                 final String error = String.format("Scan detected viruses in file '%s'! Virus scanner message = %s",
                         filename, message);
-                LOG.errorf("ClamAV %s", error);
-                throw new AntivirusException(filename, error, null);
+                log.errorf("ClamAV %s", error);
+                return result.status(400).message(error).payload(message).build();
             }
-        } catch (final AntivirusException ex) {
-            throw ex;
+            return result.status(200).message(message).payload(message).build();
         } catch (final RuntimeException | IOException ex) {
             final String error = String.format("Unexpected error scanning file '%s' - %s",
                     filename, ex.getMessage());
-            throw new AntivirusException(filename, error, ex);
+            return result.status(400).message(error).payload(ex.getMessage()).build();
         } finally {
-            LOG.infof("Finished scanning file %s!", filename);
+            log.infof("Finished scanning file %s!", filename);
         }
     }
 

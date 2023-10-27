@@ -20,7 +20,8 @@ public interface AntivirusEngine {
      *
      * @param filename the name of the file to scan
      * @param inputStream the inputStream containing the file contents
+     * @return the {@link AntivirusScanResult} containing the results
      */
-    void scan(final String filename, final InputStream inputStream);
+    AntivirusScanResult scan(final String filename, final InputStream inputStream);
 
 }

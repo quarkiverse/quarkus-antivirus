@@ -7,25 +7,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.xml.bind.DatatypeConverter;
 
-import org.jboss.logging.Logger;
-
 import io.vertx.core.json.JsonObject;
+import lombok.extern.jbosslog.JBossLog;
 
 /**
  * {@link AntivirusEngine} implementation for VirusTotal API.
  * <p>
  * Find more info about VirusTotal on <a href="https://developers.virustotal.com/reference">VirusTotal Public API v3.0</a>.
  */
+@ApplicationScoped
+@JBossLog
 public class VirusTotalEngine implements AntivirusEngine {
-
-    private static final Logger LOG = Logger.getLogger(VirusTotalEngine.class);
 
     @Inject
     VirusTotalRuntimeConfig config;
@@ -36,54 +35,87 @@ public class VirusTotalEngine implements AntivirusEngine {
     }
 
     @Override
-    public void scan(String filename, InputStream inputStream) {
+    public AntivirusScanResult scan(String filename, InputStream inputStream) {
+        AntivirusScanResult.AntivirusScanResultBuilder result = AntivirusScanResult.builder().engine("VirusTotal")
+                .fileName(filename);
         if (!config.enabled()) {
-            LOG.debug("VirusTotal scanner is currently disabled!");
-            return;
+            return result.status(404).message("VirusTotal scanner is currently disabled!").build();
         }
-        LOG.infof("Starting the virus scan for file: %s", filename);
+        log.infof("Starting the virus scan for file: %s", filename);
         try {
-            URLConnection connection = openConnection(filename, inputStream);
+            String message;
+            HttpURLConnection connection = openConnection(filename, inputStream);
+            int code = connection.getResponseCode();
+            result.status(code);
+            switch (code) {
+                case 200:
+                    // OK
+                    break;
+                case 204:
+                    message = "Virus Total Request rate limit exceeded. You are making more requests than allowed. "
+                            + "You have exceeded one of your quotas (minute, daily or monthly). Daily quotas are reset every day at 00:00 UTC.";
+                    return result.message(message).build();
+                case 400:
+                    message = "Bad request. Your request was somehow incorrect. "
+                            + "This can be caused by missing arguments or arguments with wrong values.";
+                    return result.message(message).build();
+                case 403:
+                    message = "Forbidden. You don't have enough privileges to make the request. "
+                            + "You may be doing a request without providing an API key or you may be making a request "
+                            + "to a Private API without having the appropriate privileges.";
+                    return result.message(message).build();
+                case 404:
+                    message = "Not Found. This file has never been scanned by VirusTotal before.";
+                    return result.message(message).build();
+                default:
+                    message = "Unexpected HTTP code " + code + " calling Virus Total web service.";
+                    return result.message(message).build();
+            }
+
             try (InputStream response = connection.getInputStream()) {
-                JsonObject json = new JsonObject(convertInputStreamToString(response));
-                handleBodyResponse(filename, json);
+                final String payload = convertInputStreamToString(response);
+                result.payload(payload);
+                final JsonObject json = new JsonObject(payload);
+                return handleBodyResponse(filename, json, result);
             }
         } catch (IOException ex) {
-            LOG.warn("Cannot perform virus scan");
-            throw new AntivirusException(filename, "Cannot perform virus scan", ex);
+            log.warn("Cannot perform virus scan");
+            return result.status(400).message("Cannot perform virus scan").payload(ex.getMessage()).build();
         }
     }
 
-    protected void handleBodyResponse(String filename, JsonObject json) {
+    private AntivirusScanResult handleBodyResponse(String filename, JsonObject json,
+            AntivirusScanResult.AntivirusScanResultBuilder result) {
         JsonObject data = json.getJsonObject("data");
         if (data == null) {
-            return;
+            return result.status(200).build();
         }
         JsonObject attributes = data.getJsonObject("attributes");
         if (attributes == null) {
-            return;
+            return result.status(200).build();
         }
         JsonObject totalVotes = attributes.getJsonObject("total_votes");
         if (totalVotes == null) {
-            return;
+            return result.status(200).build();
         }
         int votes = totalVotes.getInteger("malicious", 0);
         if (votes >= config.minimumVotes()) {
             String name = attributes.getString("meaningful_name");
-            LOG.debugf(String.format("Retrieved %s meaningful name.", name));
+            log.debugf(String.format("Retrieved %s meaningful name.", name));
             if (name != null && !name.isEmpty()) {
                 final String error = String.format("Scan detected virus '%s' in file '%s'!", name, filename);
-                throw new AntivirusException(filename, error);
+                return result.status(400).message(error).build();
             }
         }
+        return result.status(200).build();
     }
 
-    protected URLConnection openConnection(String filename, InputStream inputStream) throws IOException {
+    protected HttpURLConnection openConnection(String filename, InputStream inputStream) throws IOException {
         HttpURLConnection connection;
         try {
             String key = config.key().orElseThrow(RuntimeException::new);
             String hash = md5Hex(filename, convertInputStreamToByteArray(inputStream));
-            LOG.debugf("File Hash = %s", hash);
+            log.debugf("File Hash = %s", hash);
             URL url = new URL(String.format(config.url(), hash));
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("x-apikey", key);
@@ -91,33 +123,6 @@ public class VirusTotalEngine implements AntivirusEngine {
             connection.connect();
         } catch (IOException e) {
             throw new AntivirusException(filename, e.getMessage(), e);
-        }
-
-        int code = connection.getResponseCode();
-        switch (code) {
-            case 200:
-                // OK
-                break;
-            case 204:
-                throw new AntivirusException(filename,
-                        "Virus Total Request rate limit exceeded. You are making more requests than allowed. "
-                                + "You have exceeded one of your quotas (minute, daily or monthly). Daily quotas are reset every day at 00:00 UTC.");
-            case 400:
-                throw new AntivirusException(filename, "Bad request. Your request was somehow incorrect. "
-                        + "This can be caused by missing arguments or arguments with wrong values.");
-            case 403:
-                throw new AntivirusException(filename, "Forbidden. You don't have enough privileges to make the request. "
-                        + "You may be doing a request without providing an API key or you may be making a request "
-                        + "to a Private API without having the appropriate privileges.");
-            case 404:
-                if (config.allowUnknown()) {
-                    LOG.infof("'%s' has never been scanned by VirusTotal before.", filename);
-                } else {
-                    throw new AntivirusException(filename, "Not Found. This file has never been scanned by VirusTotal before.");
-                }
-                break;
-            default:
-                throw new AntivirusException(filename, "Unexpected HTTP code " + code + " calling Virus Total web service.");
         }
 
         return connection;

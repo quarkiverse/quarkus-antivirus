@@ -281,21 +281,4 @@ endif::add-copy-button-to-env-var[]
 --|int 
 |`1`
 
-
-a| [[quarkus-antivirus_quarkus.antivirus.virustotal.allow-unknown]]`link:#quarkus-antivirus_quarkus.antivirus.virustotal.allow-unknown[quarkus.antivirus.virustotal.allow-unknown]`
-
-
-[.description]
---
-VirusTotal returns a 404 if their database has no information about the file being scanned. This flag allows for control over whether an exception should be thrown in this scenario or whether it can be ignored as a safe file.
-
-ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_ALLOW_UNKNOWN+++[]
-endif::add-copy-button-to-env-var[]
-ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_ANTIVIRUS_VIRUSTOTAL_ALLOW_UNKNOWN+++`
-endif::add-copy-button-to-env-var[]
---|boolean 
-|`true`
-
 |===
