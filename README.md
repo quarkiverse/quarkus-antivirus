@@ -94,8 +94,13 @@ public class AntivirusResource {
             final ByteArrayInputStream inputStream = new ByteArrayInputStream(
                     IOUtils.toBufferedInputStream(data).readAllBytes());
 
-            // scan the file it will throw AntiVirusException if virus found
-            antivirus.scan(fileName, inputStream);
+            // scan the file and check the results
+            List<AntivirusScanResult> results = antivirus.scan(fileName, inputStream);
+            for (AntivirusScanResult result : results) {
+                if (result.getStatus() != Response.Status.OK.getStatusCode()) {
+                    throw new WebApplicationException(result.getMessage(), result.getStatus());
+                }
+            }
 
             // reset the stream
             inputStream.reset();
@@ -103,7 +108,7 @@ public class AntivirusResource {
             // write the file out to disk
             final File tempFile = File.createTempFile("fileName", "tmp");
             IOUtils.copy(inputStream, new FileOutputStream(tempFile));
-        } catch (AntivirusException | IOException e) {
+        } catch (IOException e) {
             throw new BadRequestException(e);
         }
 
@@ -125,7 +130,7 @@ public class MyCustomEngine implements AntivirusEngine {
     }
     
     @Override
-    public void scan(final String filename, final InputStream inputStream) {
+    public AntivirusScanResult scan(final String filename, final InputStream inputStream) {
         // scan your file here
     }
 }
