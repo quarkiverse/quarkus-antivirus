@@ -8,6 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 
+import lombok.SneakyThrows;
 import lombok.extern.jbosslog.JBossLog;
 
 /**
@@ -27,12 +28,15 @@ public class Antivirus {
      * @param inputStream the inputStream containing the file contents
      * @return the List of all {@link AntivirusScanResult} from all engines
      */
+    @SneakyThrows
     public List<AntivirusScanResult> scan(final String filename, final InputStream inputStream) {
         final List<AntivirusScanResult> results = new ArrayList<>();
         for (AntivirusEngine plugin : engineInstances) {
             if (plugin.isEnabled()) {
                 final AntivirusScanResult result = plugin.scan(filename, inputStream);
                 results.add(result);
+                // reset the stream for the next scan
+                inputStream.reset();
             }
         }
 

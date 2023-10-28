@@ -88,11 +88,9 @@ public class VirusTotalResource {
                     IOUtils.toBufferedInputStream(data).readAllBytes());
 
             AntivirusScanResult result = engine.scan(fileName, inputStream);
-            ;
             if (result.getStatus() != Response.Status.OK.getStatusCode()) {
                 throw new WebApplicationException(result.getMessage(), result.getStatus());
             }
-            inputStream.reset();
 
             // write the file out to disk
             final File tempFile = File.createTempFile("fileName", "tmp");

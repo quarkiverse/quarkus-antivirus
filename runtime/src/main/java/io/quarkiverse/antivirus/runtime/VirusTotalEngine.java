@@ -49,7 +49,7 @@ public class VirusTotalEngine implements AntivirusEngine {
             result.status(code);
             switch (code) {
                 case 200:
-                    // OK
+                    result.message("OK");
                     break;
                 case 204:
                     message = "Virus Total Request rate limit exceeded. You are making more requests than allowed. "
