@@ -102,9 +102,6 @@ public class AntivirusResource {
                 }
             }
 
-            // reset the stream
-            inputStream.reset();
-
             // write the file out to disk
             final File tempFile = File.createTempFile("fileName", "tmp");
             IOUtils.copy(inputStream, new FileOutputStream(tempFile));
