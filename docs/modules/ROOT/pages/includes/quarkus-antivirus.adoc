@@ -44,6 +44,46 @@ endif::add-copy-button-to-env-var[]
 |`clamav/clamav`
 
 
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.shared]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.shared[quarkus.antivirus.clamav.devservice.shared]`
+
+
+[.description]
+--
+Indicates if the ClamAV server managed by Quarkus Dev Services is shared. When shared, Quarkus looks for running containers using label-based service discovery. If a matching container is found, it is used, and so a second one is not started. Otherwise, Dev Services for ClamAV starts a new container.
+
+The discovery uses the `quarkus-dev-service-clamav` label. The value is configured using the `service-name` property.
+
+Container sharing is only used in dev mode.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_SHARED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_SHARED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.service-name]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.service-name[quarkus.antivirus.clamav.devservice.service-name]`
+
+
+[.description]
+--
+The value of the `quarkus-dev-service-clamav` label attached to the started container. This property is used when `shared` is set to `true`. In this case, before starting a container, Dev Services for Minio looks for a container with the `quarkus-dev-service-clamav` label set to the configured value. If found, it will use this container instead of starting a new one. Otherwise, it starts a new container with the `quarkus-dev-service-clamav` label set to the specified value.
+
+This property is used when you need multiple shared ClamAV servers.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_SERVICE_NAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_SERVICE_NAME+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|`clamav`
+
+
 a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.startup-timeout]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.startup-timeout[quarkus.antivirus.clamav.devservice.startup-timeout]`
 
 

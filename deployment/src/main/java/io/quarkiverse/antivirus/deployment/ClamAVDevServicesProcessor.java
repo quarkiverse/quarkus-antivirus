@@ -1,7 +1,10 @@
 package io.quarkiverse.antivirus.deployment;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.jboss.logging.Logger;
 
@@ -11,12 +14,16 @@ import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.BuildSteps;
 import io.quarkus.deployment.builditem.DevServicesResultBuildItem;
+import io.quarkus.deployment.builditem.DevServicesSharedNetworkBuildItem;
 import io.quarkus.deployment.builditem.DockerStatusBuildItem;
 import io.quarkus.deployment.builditem.LaunchModeBuildItem;
 import io.quarkus.deployment.console.ConsoleInstalledBuildItem;
 import io.quarkus.deployment.console.StartupLogCompressor;
 import io.quarkus.deployment.dev.devservices.GlobalDevServicesConfig;
 import io.quarkus.deployment.logging.LoggingSetupBuildItem;
+import io.quarkus.devservices.common.ContainerAddress;
+import io.quarkus.devservices.common.ContainerLocator;
+import io.quarkus.devservices.common.ContainerShutdownCloseable;
 
 /**
  * Starts a ClamAV server as dev service if needed.
@@ -32,6 +39,8 @@ public class ClamAVDevServicesProcessor {
      */
     static final String DEV_SERVICE_LABEL = "quarkus-dev-service-clamav";
 
+    static final ContainerLocator containerLocator = new ContainerLocator(DEV_SERVICE_LABEL, ClamAVContainer.PORT_TCP);
+
     static volatile DevServicesResultBuildItem.RunningDevService devService;
     static volatile ClamAVBuildConfig cfg;
     static volatile boolean first = true;
@@ -44,7 +53,8 @@ public class ClamAVDevServicesProcessor {
             Optional<ConsoleInstalledBuildItem> consoleInstalledBuildItem,
             LoggingSetupBuildItem loggingSetupBuildItem,
             GlobalDevServicesConfig devServicesConfig,
-            BuildProducer<ClamAVDevServicesConfigBuildItem> clamAvBuildItemBuildProducer) {
+            BuildProducer<ClamAVDevServicesConfigBuildItem> clamAvBuildItemBuildProducer,
+            List<DevServicesSharedNetworkBuildItem> devServicesSharedNetworkBuildItem) {
 
         if (devService != null) {
             boolean shouldShutdownTheBroker = !clamAVConfig.equals(cfg);
@@ -59,7 +69,8 @@ public class ClamAVDevServicesProcessor {
                 (launchMode.isTest() ? "(test) " : "") + "ClamAV Dev Services Starting:",
                 consoleInstalledBuildItem, loggingSetupBuildItem);
         try {
-            devService = startClamAV(dockerStatusBuildItem, clamAVConfig, devServicesConfig);
+            devService = startClamAV(dockerStatusBuildItem, clamAVConfig, devServicesConfig, launchMode,
+                    !devServicesSharedNetworkBuildItem.isEmpty());
             if (devService == null) {
                 compressor.closeAndDumpCaptured();
             } else {
@@ -101,7 +112,9 @@ public class ClamAVDevServicesProcessor {
 
     private DevServicesResultBuildItem.RunningDevService startClamAV(DockerStatusBuildItem dockerStatusBuildItem,
             ClamAVBuildConfig clamAVConfig,
-            GlobalDevServicesConfig devServicesConfig) {
+            GlobalDevServicesConfig devServicesConfig,
+            LaunchModeBuildItem launchMode,
+            boolean useSharedNetwork) {
         if (!clamAVConfig.enabled()) {
             // explicitly disabled
             log.warn("Not starting dev services for ClamAV, as it has been disabled in the config.");
@@ -125,14 +138,27 @@ public class ClamAVDevServicesProcessor {
             return null;
         }
 
-        final ClamAVContainer clamAV = new ClamAVContainer(clamAVConfig);
-        devServicesConfig.timeout.ifPresent(clamAV::withStartupTimeout);
-        clamAV.start();
+        final Optional<ContainerAddress> maybeContainerAddress = containerLocator.locateContainer(clamAVConfig.serviceName(),
+                useSharedNetwork,
+                launchMode.getLaunchMode());
 
-        return new DevServicesResultBuildItem.RunningDevService(ClamAVContainer.NAME,
-                clamAV.getContainerId(),
-                clamAV::close,
-                clamAV.getExposedConfig());
+        final Supplier<DevServicesResultBuildItem.RunningDevService> defaultClamAvSupplier = () -> {
+            final ClamAVContainer container = new ClamAVContainer(clamAVConfig, useSharedNetwork);
+            devServicesConfig.timeout.ifPresent(container::withStartupTimeout);
+            container.start();
+
+            return new DevServicesResultBuildItem.RunningDevService(clamAVConfig.serviceName(),
+                    container.getContainerId(),
+                    new ContainerShutdownCloseable(container, clamAVConfig.serviceName()),
+                    container.getExposedConfig());
+        };
+
+        return maybeContainerAddress
+                .map(containerAddress -> new DevServicesResultBuildItem.RunningDevService(clamAVConfig.serviceName(),
+                        containerAddress.getId(),
+                        null,
+                        new HashMap<>()))
+                .orElseGet(defaultClamAvSupplier);
     }
 
     private void shutdown() {

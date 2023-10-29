@@ -12,6 +12,8 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
+import io.quarkus.devservices.common.ConfigureUtil;
+
 /**
  * Testcontainers implementation for ClamAV antivirus server.
  * <p>
@@ -21,8 +23,6 @@ import org.testcontainers.utility.MountableFile;
  * Exposed ports: 3310 (tcp)
  */
 public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
-
-    public static final String NAME = "clamav";
 
     /**
      * Logger which will be used to capture container STDOUT and STDERR.
@@ -34,9 +34,15 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
      */
     public static final Integer PORT_TCP = Integer.parseInt(ClamAVBuildConfig.PORT_TCP);
 
-    ClamAVContainer(ClamAVBuildConfig config) {
+    private final boolean useSharedNetwork;
+    private String hostName = null;
+    private final ClamAVBuildConfig config;
+
+    ClamAVContainer(ClamAVBuildConfig config, boolean useSharedNetwork) {
         super(DockerImageName.parse(config.imageName()).asCompatibleSubstituteFor(ClamAVBuildConfig.DEFAULT_IMAGE));
-        super.withLabel(ClamAVDevServicesProcessor.DEV_SERVICE_LABEL, NAME);
+        this.useSharedNetwork = useSharedNetwork;
+        this.config = config;
+        super.withLabel(ClamAVDevServicesProcessor.DEV_SERVICE_LABEL, config.serviceName());
         super.withNetwork(Network.SHARED);
         super.waitingFor(Wait.forLogMessage(".*socket found, clamd started.*", 1));
         super.withEnv("CLAMD_STARTUP_TIMEOUT", Integer.toString(config.startupTimeout()));
@@ -47,15 +53,25 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
                 MountableFile.forClasspathResource("/clamd.conf"),
                 "/etc/clamav/clamd.conf");
 
+        if (useSharedNetwork) {
+            super.withReuse(true);
+        }
+
         // forward the container logs
         if (config.logging()) {
-            super.withLogConsumer(new JbossContainerLogConsumer(log).withPrefix(NAME));
+            super.withLogConsumer(new JbossContainerLogConsumer(log).withPrefix(config.serviceName()));
         }
     }
 
     @Override
     protected void configure() {
         super.configure();
+
+        if (useSharedNetwork) {
+            hostName = ConfigureUtil.configureSharedNetwork(this, this.config.serviceName());
+        } else {
+            withNetwork(Network.SHARED);
+        }
 
         // this forces the TCP port to match quarkus.antivirus.clamav.port
         addFixedExposedPort(getPort(), PORT_TCP);
@@ -68,9 +84,31 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
      */
     public Map<String, String> getExposedConfig() {
         Map<String, String> exposed = new HashMap<>(1);
-        exposed.put(NAME + ".tcp.port", Objects.toString(getPort()));
+        exposed.put(this.config.serviceName() + ".tcp.port", Objects.toString(getEffectivePort()));
+        exposed.put(this.config.serviceName() + ".tcp.host", Objects.toString(getEffectiveHost()));
         exposed.putAll(super.getEnvMap());
         return exposed;
+    }
+
+    public String getEffectiveHost() {
+        if (useSharedNetwork) {
+            return hostName;
+        }
+
+        return getTcpHost();
+    }
+
+    /**
+     * Use "quarkus.antivirus.clamav.port" to configure ClamAV as its exposed TCP port.
+     *
+     * @return the port or 3310 if not found which will cause this service not to start
+     */
+    public int getEffectivePort() {
+        if (useSharedNetwork) {
+            return PORT_TCP;
+        }
+
+        return getPort();
     }
 
     /**
