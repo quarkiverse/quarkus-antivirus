@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -81,6 +83,9 @@ public class VirusTotalEngine implements AntivirusEngine {
         } catch (IOException ex) {
             log.warn("Cannot perform virus scan");
             return result.status(400).message("Cannot perform virus scan").payload(ex.getMessage()).build();
+        } catch (URISyntaxException ex) {
+            log.error("Malformed URL for VirusTotal API");
+            return result.status(500).message("Cannot perform virus scan").payload("Server configuration error.").build();
         }
     }
 
@@ -110,13 +115,14 @@ public class VirusTotalEngine implements AntivirusEngine {
         return result.status(200).build();
     }
 
-    protected HttpURLConnection openConnection(String filename, InputStream inputStream) throws IOException {
+    protected HttpURLConnection openConnection(String filename, InputStream inputStream)
+            throws IOException, URISyntaxException {
         HttpURLConnection connection;
         try {
             String key = config.key().orElseThrow(RuntimeException::new);
             String hash = md5Hex(filename, convertInputStreamToByteArray(inputStream));
             log.debugf("File Hash = %s", hash);
-            URL url = new URL(String.format(config.url(), hash));
+            URL url = new URI(String.format(config.url(), hash)).toURL();
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("x-apikey", key);
             connection.setRequestMethod("GET");
