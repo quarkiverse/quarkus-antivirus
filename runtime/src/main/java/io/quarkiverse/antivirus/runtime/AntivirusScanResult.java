@@ -4,7 +4,6 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.extern.jbosslog.JBossLog;
 
 /**
  * Provide the results of a single antivirus engine scan.
@@ -13,7 +12,6 @@ import lombok.extern.jbosslog.JBossLog;
 @Data
 @AllArgsConstructor
 @Builder
-@JBossLog
 public class AntivirusScanResult {
 
     /**
