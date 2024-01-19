@@ -10,7 +10,7 @@
 [![Build](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 A Quarkus extension that lets you scan files for viruses using a pluggable engine architecture.
@@ -157,6 +157,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://melloware.com"><img src="https://avatars.githubusercontent.com/u/4399574?v=4?s=100" width="100px;" alt="Melloware"/><br /><sub><b>Melloware</b></sub></a><br /><a href="#maintenance-melloware" title="Maintenance">🚧</a> <a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=melloware" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ketola"><img src="https://avatars.githubusercontent.com/u/966606?v=4?s=100" width="100px;" alt="Sauli Ketola"/><br /><sub><b>Sauli Ketola</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=ketola" title="Tests">⚠️</a> <a href="#ideas-ketola" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ggrebert"><img src="https://avatars.githubusercontent.com/u/1737774?v=4?s=100" width="100px;" alt="Geoffrey GREBERT"/><br /><sub><b>Geoffrey GREBERT</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=ggrebert" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
