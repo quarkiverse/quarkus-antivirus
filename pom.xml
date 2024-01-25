@@ -16,6 +16,7 @@
     <module>deployment</module>
     <module>runtime</module>
     <module>docs</module>
+    <module>integration-tests</module>
   </modules>
   <scm>
     <connection>scm:git:git@github.com:quarkiverse/quarkus-antivirus.git</connection>
