@@ -127,7 +127,7 @@ public class ClamAVDevServicesProcessor {
             return null;
         }
 
-        if (!ClamAVContainer.getTcpHost().equalsIgnoreCase("localhost")) {
+        if (ClamAVContainer.getTcpHost().isPresent()) {
             // no mailer configured
             log.warn("Not starting dev services for ClamAV, as 'quarkus.antivirus.clamav.host' has been configured.");
             return null;

@@ -53,13 +53,12 @@ Or add to you pom.xml directly:
 Now that you configured your POM to use the service, now you need to configure which scanner(s) you want to use in `application.properties`:
 
 ### ClamAV
-[ClamAV](https://www.clamav.net/) is an open source Linux based virus scanning engine. If you configure `quarkus.antivirus.clamav.devservice.enabled=true` a DevService will start a ClamAV instance for you on TCP port 3310, so you can test locally during development.
+[ClamAV](https://www.clamav.net/) is an open source Linux based virus scanning engine.
+If you don't set a host `quarkus.antivirus.clamav.host` a DevService will start a ClamAV instance for you on a dynamic free port, so you can test locally during development.
+
 ```properties
 quarkus.antivirus.clamav.enabled=true
-quarkus.antivirus.clamav.devservice.enabled=true
 quarkus.antivirus.clamav.health.enabled=true
-quarkus.antivirus.clamav.host=localhost
-quarkus.antivirus.clamav.port=3310
 ```
 
 ### VirusTotal

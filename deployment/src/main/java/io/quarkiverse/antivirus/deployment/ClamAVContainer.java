@@ -3,6 +3,7 @@ package io.quarkiverse.antivirus.deployment;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.jboss.logging.Logger;
@@ -73,8 +74,7 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
             withNetwork(Network.SHARED);
         }
 
-        // this forces the TCP port to match quarkus.antivirus.clamav.port
-        addFixedExposedPort(getPort(), PORT_TCP);
+        addExposedPort(PORT_TCP);
     }
 
     /**
@@ -84,8 +84,10 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
      */
     public Map<String, String> getExposedConfig() {
         Map<String, String> exposed = new HashMap<>(1);
-        exposed.put(this.config.serviceName() + ".tcp.port", Objects.toString(getEffectivePort()));
+        exposed.put(this.config.serviceName() + ".tcp.port", Objects.toString(getFirstMappedPort()));
         exposed.put(this.config.serviceName() + ".tcp.host", Objects.toString(getEffectiveHost()));
+        exposed.put("quarkus.antivirus.clamav.port", Objects.toString(getFirstMappedPort()));
+        exposed.put("quarkus.antivirus.clamav.host", Objects.toString(getEffectiveHost()));
         exposed.putAll(super.getEnvMap());
         return exposed;
     }
@@ -95,7 +97,7 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
             return hostName;
         }
 
-        return getTcpHost();
+        return getHost();
     }
 
     /**
@@ -124,10 +126,9 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
     /**
      * Use "quarkus.antivirus.clamav.host" to configure ClamAV server.
      *
-     * @return the host or "localhost" if not found
+     * @return the host in an Optional.
      */
-    public static String getTcpHost() {
-        return ConfigProvider.getConfig().getOptionalValue("quarkus.antivirus.clamav.host",
-                String.class).orElse("localhost");
+    public static Optional<String> getTcpHost() {
+        return ConfigProvider.getConfig().getOptionalValue("quarkus.antivirus.clamav.host", String.class);
     }
 }

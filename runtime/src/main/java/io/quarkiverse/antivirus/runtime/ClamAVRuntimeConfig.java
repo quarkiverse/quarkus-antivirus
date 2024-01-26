@@ -1,5 +1,7 @@
 package io.quarkiverse.antivirus.runtime;
 
+import java.util.Optional;
+
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 import io.smallrye.config.ConfigMapping;
@@ -30,8 +32,7 @@ public interface ClamAVRuntimeConfig {
      * The IP Address of the machine where ClamAV is running.
      */
     @WithName("clamav.host")
-    @WithDefault("localhost")
-    String host();
+    Optional<String> host();
 
     /**
      * The Port of the machine where ClamAV is running.
