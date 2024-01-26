@@ -30,7 +30,7 @@ public interface ClamAVBuildConfig {
      * by default, unless there is an existing configuration present.
      */
     @WithName("clamav.devservice.enabled")
-    @WithDefault("false")
+    @WithDefault("true")
     boolean enabled();
 
     /**

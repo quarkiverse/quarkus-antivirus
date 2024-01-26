@@ -46,7 +46,8 @@ public class ClamAVClient {
     protected Socket getSocket(int timeout) throws IOException {
         Socket socket = new Socket();
         socket.setSoTimeout(timeout);
-        socket.connect(new InetSocketAddress(config.host(), config.port()), timeout);
+        String host = config.host().orElseThrow();
+        socket.connect(new InetSocketAddress(host, config.port()), timeout);
         return socket;
     }
 
