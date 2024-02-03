@@ -8,6 +8,7 @@ import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
+import io.quarkus.smallrye.health.deployment.spi.HealthBuildItem;
 
 /**
  * Main processor for the Antivirus extension.
@@ -29,12 +30,10 @@ class AntivirusProcessor {
                 .addBeanClasses(VirusTotalEngine.class)
                 .addBeanClasses(Antivirus.class)
                 .build());
+    }
 
-        // health check
-        if (buildConfig.healthEnabled()) {
-            beans.produce(AdditionalBeanBuildItem.builder().setUnremovable()
-                    .addBeanClasses(ClamAVHealthCheck.class)
-                    .build());
-        }
+    @BuildStep
+    HealthBuildItem addHealthCheck(ClamAVBuildConfig buildConfig) {
+        return new HealthBuildItem(ClamAVHealthCheck.class.getName(), buildConfig.healthEnabled());
     }
 }

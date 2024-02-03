@@ -18,7 +18,7 @@ import io.restassured.response.Response;
 public class ClamAVResourceTest {
 
     @Test
-    public void testValidFile() {
+    void testValidFile() {
         given()
                 .when().get("/clamav/valid")
                 .then()
@@ -27,7 +27,7 @@ public class ClamAVResourceTest {
     }
 
     @Test
-    public void testInvalidFile() {
+    void testInvalidFile() {
         RestAssured.defaultParser = Parser.TEXT;
         Response response = given()
                 .contentType(ContentType.TEXT)
@@ -43,5 +43,10 @@ public class ClamAVResourceTest {
             assertThat(stack, containsStringIgnoringCase(
                     "Scan detected viruses in file 'invalid.txt'! Virus scanner message = stream: Win.Test.EICAR_HDB-1 FOUND"));
         }
+    }
+
+    @Test
+    void testHealthServlet() {
+        RestAssured.when().get("/q/health").then().statusCode(200);
     }
 }
