@@ -53,22 +53,34 @@ Or add to you pom.xml directly:
 Now that you configured your POM to use the service, now you need to configure which scanner(s) you want to use in `application.properties`:
 
 ### ClamAV
+
 [ClamAV](https://www.clamav.net/) is an open source Linux based virus scanning engine.
 If you don't set a host `quarkus.antivirus.clamav.host` a DevService will start a ClamAV instance for you on a dynamic free port, so you can test locally during development.
 
 ```properties
 quarkus.antivirus.clamav.enabled=true
-quarkus.antivirus.clamav.health.enabled=true
 ```
+
+#### ClamAV Health Check
+
+If you are using the `quarkus-smallrye-health` extension,
+quarkus-vault can add a readiness health check to validate the connection to the ClamAV server.
+
+If enabled (by default) and the extension is present,
+when you access the `/q/health/ready` endpoint of your application you will have information about the connection validation status.
+
+You can disable this behavior by setting the property `quarkus.antivirus.clamav.health.enabled` to `false` in your application.properties.
 
 ### VirusTotal
 
 [VirusTotal](https://www.virustotal.com/) is a REST API that analyses suspicious files to detect malware using over 70 antivirus scanners.  VirusTotal checks the hash of a file to see if it has been scanned and what the results are.  You can set the threshold of how many of the 70+ engines you want to report the file as malicious before you consider it a malicious file using the `minimum-votes` property.
+
 ```properties
 quarkus.antivirus.virustotal.enabled=true
 quarkus.antivirus.virustotal.key=<YOUR API KEY>
 quarkus.antivirus.virustotal.minimum-votes=1
 ```
+
 ## Usage
 
 Simply inject the `Antivirus` service, and it will run the scan against all configured services.  It works against `InputStream` so it can be used in any Quarkus application it is not constrained to REST applications only.
