@@ -24,7 +24,7 @@ ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
 --|boolean 
-|`false`
+|`true`
 
 
 a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus.antivirus.clamav.devservice.image-name]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.devservice.image-name[quarkus.antivirus.clamav.devservice.image-name]`
@@ -183,7 +183,7 @@ ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_HOST+++`
 endif::add-copy-button-to-env-var[]
 --|string 
-|`localhost`
+|
 
 
 a| [[quarkus-antivirus_quarkus.antivirus.clamav.port]]`link:#quarkus-antivirus_quarkus.antivirus.clamav.port[quarkus.antivirus.clamav.port]`

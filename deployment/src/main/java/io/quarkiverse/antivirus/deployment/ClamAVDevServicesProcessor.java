@@ -57,7 +57,7 @@ public class ClamAVDevServicesProcessor {
             List<DevServicesSharedNetworkBuildItem> devServicesSharedNetworkBuildItem) {
 
         if (devService != null) {
-            boolean shouldShutdownTheBroker = !clamAVConfig.equals(cfg);
+            boolean shouldShutdownTheBroker = !ClamAVBuildConfig.isEqual(clamAVConfig, cfg);
             if (!shouldShutdownTheBroker) {
                 return devService.toBuildItem();
             }

@@ -1,5 +1,7 @@
 package io.quarkiverse.antivirus.deployment;
 
+import java.util.Objects;
+
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 import io.smallrye.config.ConfigMapping;
@@ -96,5 +98,33 @@ public interface ClamAVBuildConfig {
     @WithName("clamav.health.enabled")
     @WithDefault("true")
     boolean healthEnabled();
+
+    static boolean isEqual(ClamAVBuildConfig d1, ClamAVBuildConfig d2) {
+        if (!Objects.equals(d1.enabled(), d2.enabled())) {
+            return false;
+        }
+        if (!Objects.equals(d1.imageName(), d2.imageName())) {
+            return false;
+        }
+        if (!Objects.equals(d1.logging(), d2.logging())) {
+            return false;
+        }
+        if (!Objects.equals(d1.healthEnabled(), d2.healthEnabled())) {
+            return false;
+        }
+        if (!Objects.equals(d1.freshClam(), d2.freshClam())) {
+            return false;
+        }
+        if (!Objects.equals(d1.startupTimeout(), d2.startupTimeout())) {
+            return false;
+        }
+        if (!Objects.equals(d1.shared(), d2.shared())) {
+            return false;
+        }
+        if (!Objects.equals(d1.serviceName(), d2.serviceName())) {
+            return false;
+        }
+        return true;
+    }
 
 }
