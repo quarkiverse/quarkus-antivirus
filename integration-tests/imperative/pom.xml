@@ -30,6 +30,10 @@
       <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
     <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-health</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.quarkiverse.antivirus</groupId>
       <artifactId>quarkus-antivirus</artifactId>
       <version>${project.version}</version>

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import io.quarkus.test.QuarkusUnitTest;
+import io.restassured.RestAssured;
 
 public class AntivirusTest {
 
@@ -16,8 +17,13 @@ public class AntivirusTest {
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class));
 
     @Test
-    public void writeYourOwnUnitTest() {
+    void writeYourOwnUnitTest() {
         // Write your unit tests here - see the testing extension guide https://quarkus.io/guides/writing-extensions#testing-extensions for more information
         Assertions.assertTrue(true, "Add some assertions to " + getClass().getName());
+    }
+
+    @Test
+    void testHealthServlet() {
+        RestAssured.when().get("/q/health").then().statusCode(404);
     }
 }

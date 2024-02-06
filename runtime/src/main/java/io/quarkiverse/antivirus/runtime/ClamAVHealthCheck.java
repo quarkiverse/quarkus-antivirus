@@ -17,15 +17,21 @@ public class ClamAVHealthCheck implements HealthCheck {
 
     @Inject
     ClamAVEngine engine;
+
     @Inject
     ClamAVRuntimeConfig config;
 
     @Override
     public HealthCheckResponse call() {
-        final String server = String.format("%s:%s", config.host(), config.port());
+        final String host = config.host().orElseThrow();
+        final String server = String.format("%s:%s", host, config.port());
+
         HealthCheckResponseBuilder responseBuilder = HealthCheckResponse.named("ClamAV Daemon");
-        responseBuilder = engine.ping() ? responseBuilder.up().withData(server, "UP")
+
+        responseBuilder = engine.ping()
+                ? responseBuilder.up().withData(server, "UP")
                 : responseBuilder.down().withData(server, "DOWN");
+
         return responseBuilder.build();
     }
 }
