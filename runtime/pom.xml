@@ -9,7 +9,7 @@
     <artifactId>quarkus-antivirus</artifactId>
     <name>Quarkus Antivirus - Runtime</name>
     <properties>
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.32</lombok.version>
     </properties>
     <dependencies>
         <dependency>
