@@ -29,15 +29,15 @@ For instance, with Maven, add the following dependency to your POM file:
 Now that you configured your POM to use the service, now you need to configure which scanner(s) you want to use in `application.properties`:
 
 === ClamAV
-https://www.clamav.net/[ClamAV] is an open source Linux based virus scanning engine. If you configure `quarkus.antivirus.clamav.devservice.enabled=true` a DevService will start a ClamAV instance for you on TCP port 3310, so you can test locally during development.
+https://www.clamav.net/[ClamAV] is an open source Linux based virus scanning engine. In development mode a DevService will start a ClamAV instance for you on TCP port 3310, so you can test locally during development.
+If you override with your own `host` and `port` the DevService will not start.
 
 [source,properties]
 ----
 quarkus.antivirus.clamav.enabled=true
 quarkus.antivirus.clamav.health.enabled=true
-%dev.quarkus.antivirus.clamav.devservice.enabled=true
-%dev.quarkus.antivirus.clamav.host=localhost
-%dev.quarkus.antivirus.clamav.port=3310
+%prod.quarkus.antivirus.clamav.host=192.168.7.72
+%prod.quarkus.antivirus.clamav.port=3310
 ----
 
 === VirusTotal
