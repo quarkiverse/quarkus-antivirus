@@ -35,6 +35,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "silviu-negoita",
+      "name": "Negoita Silviu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17856413?v=4",
+      "profile": "https://github.com/silviu-negoita",
+      "contributions": [
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
