@@ -45,6 +45,15 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "xstefank",
+      "name": "Martin Stefanko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9353101?v=4",
+      "profile": "http://xstefank.io",
+      "contributions": [
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 7,
