@@ -40,6 +40,13 @@ quarkus.antivirus.clamav.health.enabled=true
 %prod.quarkus.antivirus.clamav.port=3310
 ----
 
+IMPORTANT: If you want to disable ClamAV health check at run-time and not build-time you can use the following configuration:
+
+[source,properties]
+----
+quarkus.smallrye-health.check."io.quarkiverse.antivirus.runtime.ClamAVHealthCheck".enabled=false
+----
+
 === VirusTotal
 https://www.virustotal.com/[VirusTotal] is a REST API that analyses suspicious files to detect malware using over 70 antivirus scanners.  VirusTotal checks the hash of a file to see if it has been scanned and what the results are.  You can set the threshold of how many of the 70+ engines you want to report the file as malicious before you consider it a malicious file using the `minimum-votes` property.
 
