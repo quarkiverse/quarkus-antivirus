@@ -10,7 +10,7 @@
 [![Build](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-antivirus/actions/workflows/build.yml)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 A Quarkus extension that lets you scan files for viruses using a pluggable engine architecture.
@@ -170,6 +170,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ketola"><img src="https://avatars.githubusercontent.com/u/966606?v=4?s=100" width="100px;" alt="Sauli Ketola"/><br /><sub><b>Sauli Ketola</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=ketola" title="Tests">⚠️</a> <a href="#ideas-ketola" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ggrebert"><img src="https://avatars.githubusercontent.com/u/1737774?v=4?s=100" width="100px;" alt="Geoffrey GREBERT"/><br /><sub><b>Geoffrey GREBERT</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=ggrebert" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/silviu-negoita"><img src="https://avatars.githubusercontent.com/u/17856413?v=4?s=100" width="100px;" alt="Negoita Silviu"/><br /><sub><b>Negoita Silviu</b></sub></a><br /><a href="#ideas-silviu-negoita" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/quarkiverse/quarkus-antivirus/issues?q=author%3Asilviu-negoita" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://xstefank.io"><img src="https://avatars.githubusercontent.com/u/9353101?v=4?s=100" width="100px;" alt="Martin Stefanko"/><br /><sub><b>Martin Stefanko</b></sub></a><br /><a href="#question-xstefank" title="Answering Questions">💬</a></td>
     </tr>
   </tbody>
 </table>
