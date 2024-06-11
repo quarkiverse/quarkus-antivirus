@@ -54,6 +54,15 @@
       "contributions": [
         "question"
       ]
+    },
+    {
+      "login": "richardbischof",
+      "name": "Richard Bischof",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24248403?v=4",
+      "profile": "https://github.com/richardbischof",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
