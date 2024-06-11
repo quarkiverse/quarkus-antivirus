@@ -79,13 +79,6 @@ public interface ClamAVBuildConfig {
     Integer startupTimeout();
 
     /**
-     * The timeout for the ClamAV container to start in seconds.
-     */
-    @WithName("clamav.devservice.testcontainers-startup-timeout")
-    @WithDefault("120")
-    Integer testcontainersStartupTimeout();
-
-    /**
      * Flag to enable the FreshClam daemon to update the virus database daily. Default it is disabled.
      */
     @WithName("clamav.devservice.fresh-clam")
@@ -123,9 +116,6 @@ public interface ClamAVBuildConfig {
             return false;
         }
         if (!Objects.equals(d1.startupTimeout(), d2.startupTimeout())) {
-            return false;
-        }
-        if(!Objects.equals(d1.testcontainersStartupTimeout(), d2.testcontainersStartupTimeout())) {
             return false;
         }
         if (!Objects.equals(d1.shared(), d2.shared())) {

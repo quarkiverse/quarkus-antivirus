@@ -47,7 +47,7 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
         super.withLabel(ClamAVDevServicesProcessor.DEV_SERVICE_LABEL, config.serviceName());
         super.withNetwork(Network.SHARED);
         super.waitingFor(Wait.forLogMessage(".*socket found, clamd started.*", 1));
-        super.withStartupTimeout(Duration.ofSeconds(config.testcontainersStartupTimeout()));
+        super.withStartupTimeout(Duration.ofSeconds(config.startupTimeout()));
         super.withEnv("CLAMD_STARTUP_TIMEOUT", Integer.toString(config.startupTimeout()));
         super.withEnv("CLAMAV_NO_FRESHCLAMD", Boolean.toString(!config.freshClam()));
         super.withEnv("CLAMAV_NO_CLAMD ", "false");
