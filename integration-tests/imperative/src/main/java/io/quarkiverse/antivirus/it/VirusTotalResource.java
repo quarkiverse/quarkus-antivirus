@@ -105,6 +105,6 @@ public class VirusTotalResource {
             log.infof("File '%s' processed in %s.", fileName, stopWatch.toString());
         }
 
-        return Response.ok(stopWatch.toString()).status(Response.Status.CREATED).build();
+        return Response.ok("Scanned successfully in " + stopWatch.toString()).status(Response.Status.CREATED).build();
     }
 }
