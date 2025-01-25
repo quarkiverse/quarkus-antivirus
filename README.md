@@ -14,19 +14,14 @@ A Quarkus extension that lets you scan files for viruses using a pluggable engin
 Out of the box these engines are supported by this extension:
 - [ClamAV](https://www.clamav.net/) which is a Linux Native antivirus server
 - [VirusTotal](https://www.virustotal.com/) which is a REST API to check the Hash of a file to see if it has already been reported for viruses
-- [ICAP](https://www.icap-project.org/) The Internet Content Adaptation Protocol (ICAP) is widely used to enhance network security by enabling communication between clients and servers for tasks such as antivirus scanning and data loss prevention. Several products support ICAP scanning, either as ICAP servers providing scanning services or as clients integrating ICAP capabilities. Examples include:
-    - [MetaDefender ICAP Server](https://www.opswat.com/products/meta-defender) by OPSWAT
-    - [Clearswift Secure ICAP Gateway](https://www.clearswift.com/products/clearswift-secure-icap-gateway) by Clearswift
-    - [ClamAV ICAP Server](https://www.clamav.net/documents/clamav-icap-server) by ClamAV
-    - [OpenSCAP ICAP Server](https://www.open-scap.org/tools/icap-server/) by OpenSCAP
-    - [Cloudmersive ICAP Anti-Virus Scanning Server](https://www.cloudmersive.com/antivirus-api) by Cloudmersive
-    - [Broadcom ICAP Server](https://www.broadcom.com/products/cyber-security/antivirus-and-antimalware/icap-server) by Broadcom
-    - [F-Prot ICAP Server](https://www.f-prot.com/products/f-prot-icap-server) by F-Prot
-    - [F-Secure ICAP Server](https://www.f-secure.com/en/business/products/f-secure-icap-server) by F-Secure
-    - [Fortinet ICAP Server](https://www.fortinet.com/products/forticlient-endpoint-protection-and-management/icap-server) by Fortinet
-    - [GFI ICAP Server](https://www.gfi.com/products/gfi-icap-server) by GFI
-    - [Kaspersky ICAP Server](https://www.kaspersky.com/business-security/icap-server) by Kaspersky
-    - [Sophos ICAP Server](https://www.sophos.com/en-us/products/sophos-icap-server) by Sophos
+- [ICAP](https://github.com/toolarium/toolarium-icap-client) The Internet Content Adaptation Protocol (ICAP) is widely used to enhance network security by enabling communication between clients and servers for tasks such as antivirus scanning and data loss prevention. Several products support ICAP scanning, either as ICAP servers providing scanning services or as clients integrating ICAP capabilities. Examples include:
+    - [MetaDefender ICAP Server](https://www.opswat.com/products/metadefender) by OPSWAT
+    - [Clearswift Secure ICAP Gateway](https://emailsecurity.fortra.com/products/secure-icap-gateway) by Clearswift
+    - [ClamAV ICAP Server](https://squidclamav.darold.net/documentation.html) by ClamAV
+    - [OpenSCAP ICAP Server](https://www.open-scap.org/) by OpenSCAP
+    - [Cloudmersive ICAP Anti-Virus Scanning Server](https://cloudmersive.com/icap-anti-virus-scan-server) by Cloudmersive
+    - [Broadcom ICAP Server](https://techdocs.broadcom.com/us/en/vmware-security-load-balancing/avi-load-balancer/avi-load-balancer/30-1/vmware-avi-load-balancer-configuration-guide/load-balancing-overview/internet-content-adaptation-protocol.html) by Broadcom
+    - [Kaspersky ICAP Server](https://support.kaspersky.com/ScanEngine/1.0/en-US/179823.htm) by Kaspersky
 
 
 ## Getting started
