@@ -1,10 +1,13 @@
 package io.quarkiverse.antivirus.deployment.devui;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
+
+import com.github.toolarium.icap.client.ICAPClientFactory;
 
 import io.quarkiverse.antivirus.deployment.ClamAVContainer;
 import io.quarkiverse.antivirus.deployment.ClamAVDevServicesConfigBuildItem;
@@ -56,6 +59,17 @@ public class AntivirusDevUIProcessor {
                         .icon("font-awesome-solid:virus-slash")
                         .url("https://www.virustotal.com/")
                         .staticLabel("v3");
+                card.addPage(versionPage);
+            }
+
+            // VirusTotal
+            if (runtimeConfig.getOptionalValue("quarkus.antivirus.icap.enabled",
+                    Boolean.class).orElse(Boolean.FALSE)) {
+                final ExternalPageBuilder versionPage = Page.externalPageBuilder("ICAP")
+                        .icon("font-awesome-solid:virus-slash")
+                        .url("https://www.ietf.org/rfc/rfc3507.txt")
+                        .doNotEmbed()
+                        .staticLabel(Objects.toString(ICAPClientFactory.class.getPackage().getImplementationVersion(), "?"));
                 card.addPage(versionPage);
             }
 

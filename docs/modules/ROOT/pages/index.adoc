@@ -8,6 +8,19 @@ Out of the box these engines are supported by this extension:
 
 * https://www.clamav.net/[ClamAV] which is a Linux Native antivirus server
 * https://www.virustotal.com/[VirusTotal] which is a REST API to check the Hash of a file to see if it has already been reported for viruses
+* https://www.icap-project.org/[ICAP] The Internet Content Adaptation Protocol (ICAP) is widely used to enhance network security by enabling communication between clients and servers for tasks such as antivirus scanning and data loss prevention. Several products support ICAP scanning, either as ICAP servers providing scanning services or as clients integrating ICAP capabilities. Examples include:
+** https://www.opswat.com/products/meta-defender[MetaDefender ICAP Server] by OPSWAT
+** https://www.clearswift.com/products/clearswift-secure-icap-gateway[Clearswift Secure ICAP Gateway] by Clearswift
+** https://www.clamav.net/documents/clamav-icap-server[ClamAV ICAP Server] by ClamAV
+** https://www.open-scap.org/tools/icap-server/[OpenSCAP ICAP Server] by OpenSCAP
+** https://www.cloudmersive.com/antivirus-api[Cloudmersive ICAP Anti-Virus Scanning Server] by Cloudmersive
+** https://www.broadcom.com/products/cyber-security/antivirus-and-antimalware/icap-server[Broadcom ICAP Server] by Broadcom
+** https://www.f-prot.com/products/f-prot-icap-server[F-Prot ICAP Server] by F-Prot
+** https://www.f-secure.com/en/business/products/f-secure-icap-server[F-Secure ICAP Server] by F-Secure
+** https://www.fortinet.com/products/forticlient-endpoint-protection-and-management/icap-server[Fortinet ICAP Server] by Fortinet
+** https://www.gfi.com/products/gfi-icap-server[GFI ICAP Server] by GFI
+** https://www.kaspersky.com/business-security/icap-server[Kaspersky ICAP Server] by Kaspersky
+** https://www.sophos.com/en-us/products/sophos-icap-server[Sophos ICAP Server] by Sophos
 
 == Installation
 
@@ -55,6 +68,26 @@ https://www.virustotal.com/[VirusTotal] is a REST API that analyses suspicious f
 quarkus.antivirus.virustotal.enabled=true
 quarkus.antivirus.virustotal.key=<YOUR API KEY>
 quarkus.antivirus.virustotal.minimum-votes=1
+----
+
+=== ICAP
+The Internet Content Adaptation Protocol (ICAP) is widely used to enhance network security by enabling communication between clients and servers for tasks such as antivirus scanning and data loss prevention. Several products support ICAP scanning, either as ICAP servers providing scanning services or as clients integrating ICAP capabilities.
+
+To test an ICAP server you can use ClamAV ICAP Server by running the following docker command:
+
+[source,bash]
+----
+docker run --rm --name icap-server -p 1344:1344 toolarium/toolarium-icap-calmav-docker:0.0.1
+----
+
+Then configure the ICAP server in your `application.properties`:
+
+[source,properties]
+----
+quarkus.antivirus.icap.enabled=true
+quarkus.antivirus.icap.host=localhost
+quarkus.antivirus.icap.port=1344 
+quarkus.antivirus.icap.service=srv_clamav
 ----
 
 == Usage
