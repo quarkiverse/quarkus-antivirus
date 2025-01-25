@@ -17,9 +17,11 @@ import lombok.extern.jbosslog.JBossLog;
 @ApplicationScoped
 @JBossLog
 public class ClamAVEngine implements AntivirusEngine {
-    private ClamAVClient client;
+
     @Inject
     ClamAVRuntimeConfig config;
+
+    private ClamAVClient client;
 
     @Override
     public boolean isEnabled() {

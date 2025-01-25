@@ -150,6 +150,74 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`true`
 
+a| [[quarkus-antivirus_quarkus-antivirus-icap-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-enabled[`quarkus.antivirus.icap.enabled`]##
+
+[.description]
+--
+Property to enable or disable the virus scanner. Useful for developers who don't want to scan files locally.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_ICAP_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_ICAP_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`false`
+
+a| [[quarkus-antivirus_quarkus-antivirus-icap-host]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-host[`quarkus.antivirus.icap.host`]##
+
+[.description]
+--
+The IP Address of the machine where ICAP server is running.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_ICAP_HOST+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_ICAP_HOST+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`localhost`
+
+a| [[quarkus-antivirus_quarkus-antivirus-icap-port]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-port[`quarkus.antivirus.icap.port`]##
+
+[.description]
+--
+The Port of the machine where ICAP server is running.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_ICAP_PORT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_ICAP_PORT+++`
+endif::add-copy-button-to-env-var[]
+--
+|int
+|`1344`
+
+a| [[quarkus-antivirus_quarkus-antivirus-icap-service]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-service[`quarkus.antivirus.icap.service`]##
+
+[.description]
+--
+The service name of the ICAP service such as "srv_clamav". If not defined this service will not be activated.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_ICAP_SERVICE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_ICAP_SERVICE+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|
+
 a| [[quarkus-antivirus_quarkus-antivirus-virustotal-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-enabled[`quarkus.antivirus.virustotal.enabled`]##
 
 [.description]
