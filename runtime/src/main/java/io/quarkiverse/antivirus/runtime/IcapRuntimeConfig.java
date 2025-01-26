@@ -54,4 +54,11 @@ public interface IcapRuntimeConfig {
     @WithName("icap.service")
     Optional<String> service();
 
+    /**
+     * Determines whether to use a secure connection (e.g., HTTPS or another secure protocol).
+     */
+    @WithName("icap.secure")
+    @WithDefault("false")
+    boolean secure();
+
 }
