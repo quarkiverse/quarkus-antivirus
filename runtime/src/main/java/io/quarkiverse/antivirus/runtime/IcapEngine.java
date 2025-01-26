@@ -56,7 +56,8 @@ public class IcapEngine implements AntivirusEngine {
             inputStream.reset();
 
             // connect and validate with ICAP server
-            ICAPClientFactory.getInstance().getICAPClient(config.host(), config.port(), config.service().orElseThrow())
+            ICAPClientFactory.getInstance()
+                    .getICAPClient(config.host(), config.port(), config.service().orElseThrow(), config.secure())
                     .validateResource(ICAPMode.REQMOD, new ICAPRequestInformation(username, requestSource),
                             new ICAPResource(filename, inputStream, resourceLength));
 

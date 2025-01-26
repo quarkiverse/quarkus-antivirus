@@ -218,6 +218,23 @@ endif::add-copy-button-to-env-var[]
 |string
 |
 
+a| [[quarkus-antivirus_quarkus-antivirus-icap-secure]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-secure[`quarkus.antivirus.icap.secure`]##
+
+[.description]
+--
+Determines whether to use a secure connection (e.g., HTTPS or another secure protocol).
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_ANTIVIRUS_ICAP_SECURE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_ANTIVIRUS_ICAP_SECURE+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`false`
+
 a| [[quarkus-antivirus_quarkus-antivirus-virustotal-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-enabled[`quarkus.antivirus.virustotal.enabled`]##
 
 [.description]
