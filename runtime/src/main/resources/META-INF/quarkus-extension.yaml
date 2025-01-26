@@ -9,6 +9,8 @@ metadata:
     - "file"
     - "malware"
     - "security"
+    - "icap"
+    - "clamav"
   categories:
     - "security"
   config:
