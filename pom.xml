@@ -11,7 +11,7 @@
   <version>999-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Quarkus Antivirus - Parent</name>
-  <description>Virus scan files using ClamAV or VirusTotal</description>
+  <description>Virus scan files using ICAP, ClamAV, or VirusTotal</description>
   <modules>
     <module>deployment</module>
     <module>runtime</module>
