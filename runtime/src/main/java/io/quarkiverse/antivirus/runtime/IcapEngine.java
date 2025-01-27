@@ -55,11 +55,14 @@ public class IcapEngine implements AntivirusEngine {
             final long resourceLength = inputStream.readAllBytes().length;
             inputStream.reset();
 
+            final ICAPResource icapResource = new ICAPResource(filename, inputStream, resourceLength);
+            final ICAPRequestInformation request = new ICAPRequestInformation(username, requestSource)
+                    .maxRequestTimeout(config.scanTimeout());
+
             // connect and validate with ICAP server
             ICAPClientFactory.getInstance()
                     .getICAPClient(config.host(), config.port(), config.service().orElseThrow(), config.secure())
-                    .validateResource(ICAPMode.REQMOD, new ICAPRequestInformation(username, requestSource),
-                            new ICAPResource(filename, inputStream, resourceLength));
+                    .validateResource(ICAPMode.REQMOD, request, icapResource);
 
             // If no exception is thrown the resource can be used and is valid.
             return result.status(200).build();

@@ -61,4 +61,11 @@ public interface IcapRuntimeConfig {
     @WithDefault("false")
     boolean secure();
 
+    /**
+     * The timeout of how much time to give ICAP to scan the virus before failing.
+     */
+    @WithName("icap.scan-timeout")
+    @WithDefault("60000")
+    int scanTimeout();
+
 }
