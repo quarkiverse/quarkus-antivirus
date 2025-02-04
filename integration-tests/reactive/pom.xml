@@ -38,12 +38,6 @@
       <groupId>io.quarkiverse.antivirus</groupId>
       <artifactId>quarkus-antivirus-deployment</artifactId>
       <version>${project.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
