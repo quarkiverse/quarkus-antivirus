@@ -4,7 +4,7 @@
   <parent>
     <groupId>io.quarkiverse.antivirus</groupId>
     <artifactId>quarkus-antivirus-parent</artifactId>
-    <version>1.2.4</version>
+    <version>999-SNAPSHOT</version>
     <relativePath>../..</relativePath>
   </parent>
   <artifactId>quarkus-antivirus-integration-tests-imperative</artifactId>
