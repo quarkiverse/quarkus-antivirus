@@ -57,7 +57,7 @@ public class IcapEngine implements AntivirusEngine {
 
             final ICAPResource icapResource = new ICAPResource(filename, inputStream, resourceLength);
             final ICAPRequestInformation request = new ICAPRequestInformation(username, requestSource)
-                    .maxRequestTimeout(config.scanTimeout());
+                    .maxConnectionTimeout(config.scanTimeout()).maxReadTimeout(config.scanTimeout());
 
             // connect and validate with ICAP server
             ICAPClientFactory.getInstance()
