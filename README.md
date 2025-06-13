@@ -197,6 +197,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/richardbischof"><img src="https://avatars.githubusercontent.com/u/24248403?v=4?s=100" width="100px;" alt="Richard Bischof"/><br /><sub><b>Richard Bischof</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/issues?q=author%3Arichardbischof" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mepux"><img src="https://avatars.githubusercontent.com/u/11988695?v=4?s=100" width="100px;" alt="Patrick"/><br /><sub><b>Patrick</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=mepux" title="Code">💻</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://xam.dk"><img src="https://avatars.githubusercontent.com/u/54129?v=4?s=100" width="100px;" alt="Max Rydahl Andersen"/><br /><sub><b>Max Rydahl Andersen</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/issues?q=author%3Amaxandersen" title="Bug reports">🐛</a></td>
+    </tr>
   </tbody>
 </table>
 
