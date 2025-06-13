@@ -40,7 +40,7 @@ Environment variable: `+++QUARKUS_ANTIVIRUS_CLAMAV_DEVSERVICE_IMAGE_NAME+++`
 endif::add-copy-button-to-env-var[]
 --
 |string
-|`clamav/clamav`
+|`clamav/clamav-debian`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-shared]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-shared[`quarkus.antivirus.clamav.devservice.shared`]##
 
