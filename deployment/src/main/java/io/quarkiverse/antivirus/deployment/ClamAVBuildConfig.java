@@ -20,7 +20,7 @@ public interface ClamAVBuildConfig {
     /**
      * Default docker image name.
      */
-    String DEFAULT_IMAGE = "clamav/clamav";
+    String DEFAULT_IMAGE = "clamav/clamav-debian";
 
     /**
      * Default ClamAV TCP port.
