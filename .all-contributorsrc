@@ -99,6 +99,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "myfear",
+      "name": "Markus Eisele",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1358554?v=4",
+      "profile": "https://github.com/myfear",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
