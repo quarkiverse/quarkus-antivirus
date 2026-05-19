@@ -206,6 +206,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tmulle"><img src="https://avatars.githubusercontent.com/u/5183186?v=4?s=100" width="100px;" alt="tmulle"/><br /><sub><b>tmulle</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=tmulle" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://lesincroyableslivres.fr/"><img src="https://avatars.githubusercontent.com/u/1279749?v=4?s=100" width="100px;" alt="Guillaume Smet"/><br /><sub><b>Guillaume Smet</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/commits?author=gsmet" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/myfear"><img src="https://avatars.githubusercontent.com/u/1358554?v=4?s=100" width="100px;" alt="Markus Eisele"/><br /><sub><b>Markus Eisele</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-antivirus/issues?q=author%3Amyfear" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/KaiSuchomel"><img src="https://avatars.githubusercontent.com/u/79638648?v=4?s=100" width="100px;" alt="KaiSuchomel"/><br /><sub><b>KaiSuchomel</b></sub></a><br /><a href="#ideas-KaiSuchomel" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
