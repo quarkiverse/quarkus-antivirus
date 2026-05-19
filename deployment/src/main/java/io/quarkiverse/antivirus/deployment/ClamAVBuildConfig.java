@@ -29,7 +29,7 @@ public interface ClamAVBuildConfig {
 
     /**
      * If Dev Services for ClamAV has been explicitly enabled or disabled. Dev Services are generally enabled
-     * by default, unless there is an existing configuration present.
+     * by default unless there is an existing configuration present.
      */
     @WithName("clamav.devservice.enabled")
     @WithDefault("true")

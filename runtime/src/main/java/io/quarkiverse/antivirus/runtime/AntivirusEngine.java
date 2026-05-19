@@ -3,7 +3,7 @@ package io.quarkiverse.antivirus.runtime;
 import java.io.InputStream;
 
 /**
- * Service provider interface for virus scanning that might be used in file upload component for example when dealing with
+ * Service provider interface for virus scanning that might be used in a file upload component, for example, when dealing with
  * untrusted files.
  */
 public interface AntivirusEngine {
@@ -16,7 +16,7 @@ public interface AntivirusEngine {
     boolean isEnabled();
 
     /**
-     * Perform virus scan and throw exception if a virus has been detected.
+     * Perform a virus scan and throw an exception if a virus has been detected.
      *
      * @param filename the name of the file to scan
      * @param inputStream the inputStream containing the file contents

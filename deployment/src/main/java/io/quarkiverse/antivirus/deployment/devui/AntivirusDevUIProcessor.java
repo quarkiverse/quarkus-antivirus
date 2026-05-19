@@ -21,7 +21,7 @@ import io.quarkus.devui.spi.page.Page;
 import io.quarkus.devui.spi.page.WebComponentPageBuilder;
 
 /**
- * Dev UI card for displaying important details such Mailpit embedded UI.
+ * Dev UI card for displaying important details.
  */
 public class AntivirusDevUIProcessor {
 
