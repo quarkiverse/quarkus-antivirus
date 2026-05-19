@@ -87,6 +87,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<executions>
 					<execution>
@@ -100,6 +101,7 @@
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 								<maven.home>${maven.home}</maven.home>
 							</systemPropertyVariables>
+							<argLine>@{argLine}</argLine>
 						</configuration>
 					</execution>
 				</executions>
@@ -117,6 +119,7 @@
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<skipTests>${native.surefire.skip}</skipTests>
@@ -126,8 +129,7 @@
 			</build>
 			<properties>
 				<skipITs>false</skipITs>
-				<quarkus.package.type>native</quarkus.package.type>
+				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
 		</profile>
 	</profiles>
-</project>
