@@ -12,17 +12,17 @@ import lombok.SneakyThrows;
 import lombok.extern.jbosslog.JBossLog;
 
 /**
- * Antivirus service manager will execute virus scan against all registered engines.
+ * Antivirus service manager will execute a virus scan against all registered engines.
  */
 @ApplicationScoped
 @JBossLog
 public class Antivirus {
 
     @Inject
-    private Instance<AntivirusEngine> engineInstances;
+    Instance<AntivirusEngine> engineInstances;
 
     /**
-     * Perform virus scan and throw exception if a virus has been detected.
+     * Perform a virus scan and throw an exception if a virus has been detected.
      *
      * @param filename the name of the file to scan
      * @param inputStream the inputStream containing the file contents
@@ -40,7 +40,7 @@ public class Antivirus {
             }
         }
 
-        // let user know nothing happened meaning they had all engines disabled
+        // let user know nothing happened, meaning they had all engines disabled
         if (results.isEmpty()) {
             log.warn("Antivirus extension found NO scanning engines to execute!");
         }

@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 import org.jboss.logging.Logger;
 
 import io.quarkus.bootstrap.classloading.QuarkusClassLoader;
-import io.quarkus.deployment.IsNormal;
+import io.quarkus.deployment.IsProduction;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.BuildSteps;
@@ -26,9 +26,9 @@ import io.quarkus.devservices.common.ContainerLocator;
 import io.quarkus.devservices.common.ContainerShutdownCloseable;
 
 /**
- * Starts a ClamAV server as dev service if needed.
+ * Starts a ClamAV server as a dev service if needed.
  */
-@BuildSteps(onlyIfNot = IsNormal.class, onlyIf = DevServicesConfig.Enabled.class)
+@BuildSteps(onlyIfNot = IsProduction.class, onlyIf = DevServicesConfig.Enabled.class)
 public class ClamAVDevServicesProcessor {
 
     private static final Logger log = Logger.getLogger(ClamAVDevServicesProcessor.class);
@@ -133,7 +133,7 @@ public class ClamAVDevServicesProcessor {
             return null;
         }
 
-        if (!dockerStatusBuildItem.isDockerAvailable()) {
+        if (!dockerStatusBuildItem.isContainerRuntimeAvailable()) {
             log.warn("Docker isn't working, not starting dev services for ClamAV.");
             return null;
         }

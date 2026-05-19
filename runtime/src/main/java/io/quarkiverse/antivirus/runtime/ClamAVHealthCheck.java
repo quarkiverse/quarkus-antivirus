@@ -23,11 +23,15 @@ public class ClamAVHealthCheck implements HealthCheck {
 
     @Override
     public HealthCheckResponse call() {
-        final String host = config.host().orElseThrow();
-        final String server = String.format("%s:%s", host, config.port());
-
         HealthCheckResponseBuilder responseBuilder = HealthCheckResponse.named("ClamAV Daemon");
 
+        // always return UP if disabled
+        if (!config.enabled()) {
+            return responseBuilder.up().build();
+        }
+
+        final String host = config.host().orElseThrow();
+        final String server = String.format("%s:%s", host, config.port());
         responseBuilder = engine.ping()
                 ? responseBuilder.up().withData(server, "UP")
                 : responseBuilder.down().withData(server, "DOWN");
