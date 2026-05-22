@@ -1,12 +1,7 @@
 package io.quarkiverse.antivirus.deployment;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.jboss.logging.Logger;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
@@ -14,6 +9,7 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
+import io.quarkus.deployment.builditem.Startable;
 import io.quarkus.devservices.common.ConfigureUtil;
 
 /**
@@ -24,10 +20,10 @@ import io.quarkus.devservices.common.ConfigureUtil;
  * <p>
  * Exposed ports: 3310 (tcp)
  */
-public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
+public final class ClamAVContainer extends GenericContainer<ClamAVContainer> implements Startable {
 
     /**
-     * Logger which will be used to capture container STDOUT and STDERR.
+     * Logger that will be used to capture container STDOUT and STDERR.
      */
     private static final Logger log = Logger.getLogger(ClamAVContainer.class);
 
@@ -44,7 +40,6 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
         super(DockerImageName.parse(config.imageName()).asCompatibleSubstituteFor(ClamAVBuildConfig.DEFAULT_IMAGE));
         this.useSharedNetwork = useSharedNetwork;
         this.config = config;
-        super.withLabel(ClamAVDevServicesProcessor.DEV_SERVICE_LABEL, config.serviceName());
         super.withNetwork(Network.SHARED);
         super.waitingFor(Wait.forLogMessage(".*socket found, clamd started.*", 1));
         super.withStartupTimeout(Duration.ofSeconds(config.startupTimeout()));
@@ -67,6 +62,21 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
     }
 
     @Override
+    public void close() {
+        super.close();
+    }
+
+    @Override
+    public String getConnectionInfo() {
+        return getEffectiveHost() + ":" + getEffectivePort();
+    }
+
+    @Override
+    public String getContainerId() {
+        return super.getContainerId();
+    }
+
+    @Override
     protected void configure() {
         super.configure();
 
@@ -77,21 +87,6 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
         }
 
         addExposedPort(PORT_TCP);
-    }
-
-    /**
-     * Info about the DevService used in the DevUI.
-     *
-     * @return the map of as running configuration of the dev service
-     */
-    public Map<String, String> getExposedConfig() {
-        Map<String, String> exposed = new HashMap<>(1);
-        exposed.put(this.config.serviceName() + ".tcp.port", Objects.toString(getFirstMappedPort()));
-        exposed.put(this.config.serviceName() + ".tcp.host", Objects.toString(getEffectiveHost()));
-        exposed.put("quarkus.antivirus.clamav.port", Objects.toString(getFirstMappedPort()));
-        exposed.put("quarkus.antivirus.clamav.host", Objects.toString(getEffectiveHost()));
-        exposed.putAll(super.getEnvMap());
-        return exposed;
     }
 
     public String getEffectiveHost() {
@@ -112,25 +107,6 @@ public final class ClamAVContainer extends GenericContainer<ClamAVContainer> {
             return PORT_TCP;
         }
 
-        return getPort();
-    }
-
-    /**
-     * Use "quarkus.antivirus.clamav.port" to configure ClamAV as its exposed TCP port.
-     *
-     * @return the port or 3310 if not found which will cause this service not to start
-     */
-    public static Integer getPort() {
-        return ConfigProvider.getConfig().getOptionalValue("quarkus.antivirus.clamav.port",
-                Integer.class).orElse(PORT_TCP);
-    }
-
-    /**
-     * Use "quarkus.antivirus.clamav.host" to configure ClamAV server.
-     *
-     * @return the host in an Optional.
-     */
-    public static Optional<String> getTcpHost() {
-        return ConfigProvider.getConfig().getOptionalValue("quarkus.antivirus.clamav.host", String.class);
+        return getFirstMappedPort();
     }
 }
