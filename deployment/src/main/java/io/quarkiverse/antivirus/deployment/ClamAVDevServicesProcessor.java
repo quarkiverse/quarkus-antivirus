@@ -62,7 +62,7 @@ public class ClamAVDevServicesProcessor {
         return containerLocator
                 .locateContainer(clamAVConfig.serviceName(), clamAVConfig.shared(), launchMode.getLaunchMode())
                 .map(containerAddress -> DevServicesResultBuildItem.discovered()
-                        .name(FEATURE)
+                        .feature(FEATURE)
                         .containerId(containerAddress.getId())
                         .config(discoveredConfig(containerAddress, clamAVConfig))
                         .build())
