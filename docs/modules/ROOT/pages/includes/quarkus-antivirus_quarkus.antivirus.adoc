@@ -7,7 +7,7 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-enabled[`quarkus.antivirus.clamav.devservice.enabled`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-enabled[`+++quarkus.antivirus.clamav.devservice.enabled+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.enabled+++[]
 endif::add-copy-button-to-config-props[]
@@ -28,7 +28,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++true+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-image-name]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-image-name[`quarkus.antivirus.clamav.devservice.image-name`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-image-name]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-image-name[`+++quarkus.antivirus.clamav.devservice.image-name+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.image-name+++[]
 endif::add-copy-button-to-config-props[]
@@ -49,7 +49,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`+++clamav/clamav-debian+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-shared]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-shared[`quarkus.antivirus.clamav.devservice.shared`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-shared]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-shared[`+++quarkus.antivirus.clamav.devservice.shared+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.shared+++[]
 endif::add-copy-button-to-config-props[]
@@ -74,7 +74,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++true+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-service-name]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-service-name[`quarkus.antivirus.clamav.devservice.service-name`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-service-name]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-service-name[`+++quarkus.antivirus.clamav.devservice.service-name+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.service-name+++[]
 endif::add-copy-button-to-config-props[]
@@ -97,7 +97,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`+++clamav+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-startup-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-startup-timeout[`quarkus.antivirus.clamav.devservice.startup-timeout`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-startup-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-startup-timeout[`+++quarkus.antivirus.clamav.devservice.startup-timeout+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.startup-timeout+++[]
 endif::add-copy-button-to-config-props[]
@@ -118,7 +118,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++1800+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-fresh-clam]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-fresh-clam[`quarkus.antivirus.clamav.devservice.fresh-clam`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-fresh-clam]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-fresh-clam[`+++quarkus.antivirus.clamav.devservice.fresh-clam+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.fresh-clam+++[]
 endif::add-copy-button-to-config-props[]
@@ -139,7 +139,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-logging]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-logging[`quarkus.antivirus.clamav.devservice.logging`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-devservice-logging]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-devservice-logging[`+++quarkus.antivirus.clamav.devservice.logging+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.devservice.logging+++[]
 endif::add-copy-button-to-config-props[]
@@ -160,7 +160,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++true+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-health-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-health-enabled[`quarkus.antivirus.clamav.health.enabled`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-antivirus_quarkus-antivirus-clamav-health-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-health-enabled[`+++quarkus.antivirus.clamav.health.enabled+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.health.enabled+++[]
 endif::add-copy-button-to-config-props[]
@@ -181,7 +181,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++true+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-clamav-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-enabled[`quarkus.antivirus.clamav.enabled`]##
+a| [[quarkus-antivirus_quarkus-antivirus-clamav-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-enabled[`+++quarkus.antivirus.clamav.enabled+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.enabled+++[]
 endif::add-copy-button-to-config-props[]
@@ -202,7 +202,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-clamav-host]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-host[`quarkus.antivirus.clamav.host`]##
+a| [[quarkus-antivirus_quarkus-antivirus-clamav-host]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-host[`+++quarkus.antivirus.clamav.host+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.host+++[]
 endif::add-copy-button-to-config-props[]
@@ -223,7 +223,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |
 
-a| [[quarkus-antivirus_quarkus-antivirus-clamav-port]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-port[`quarkus.antivirus.clamav.port`]##
+a| [[quarkus-antivirus_quarkus-antivirus-clamav-port]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-port[`+++quarkus.antivirus.clamav.port+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.port+++[]
 endif::add-copy-button-to-config-props[]
@@ -244,7 +244,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++3310+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-clamav-scan-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-scan-timeout[`quarkus.antivirus.clamav.scan-timeout`]##
+a| [[quarkus-antivirus_quarkus-antivirus-clamav-scan-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-scan-timeout[`+++quarkus.antivirus.clamav.scan-timeout+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.scan-timeout+++[]
 endif::add-copy-button-to-config-props[]
@@ -265,7 +265,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++60000+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-clamav-chunk-size]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-chunk-size[`quarkus.antivirus.clamav.chunk-size`]##
+a| [[quarkus-antivirus_quarkus-antivirus-clamav-chunk-size]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-chunk-size[`+++quarkus.antivirus.clamav.chunk-size+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.chunk-size+++[]
 endif::add-copy-button-to-config-props[]
@@ -286,7 +286,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++10240+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-clamav-ping-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-ping-timeout[`quarkus.antivirus.clamav.ping-timeout`]##
+a| [[quarkus-antivirus_quarkus-antivirus-clamav-ping-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-clamav-ping-timeout[`+++quarkus.antivirus.clamav.ping-timeout+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.clamav.ping-timeout+++[]
 endif::add-copy-button-to-config-props[]
@@ -307,7 +307,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++2000+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-icap-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-enabled[`quarkus.antivirus.icap.enabled`]##
+a| [[quarkus-antivirus_quarkus-antivirus-icap-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-enabled[`+++quarkus.antivirus.icap.enabled+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.icap.enabled+++[]
 endif::add-copy-button-to-config-props[]
@@ -328,7 +328,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-icap-host]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-host[`quarkus.antivirus.icap.host`]##
+a| [[quarkus-antivirus_quarkus-antivirus-icap-host]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-host[`+++quarkus.antivirus.icap.host+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.icap.host+++[]
 endif::add-copy-button-to-config-props[]
@@ -349,7 +349,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`+++localhost+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-icap-port]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-port[`quarkus.antivirus.icap.port`]##
+a| [[quarkus-antivirus_quarkus-antivirus-icap-port]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-port[`+++quarkus.antivirus.icap.port+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.icap.port+++[]
 endif::add-copy-button-to-config-props[]
@@ -370,7 +370,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++1344+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-icap-service]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-service[`quarkus.antivirus.icap.service`]##
+a| [[quarkus-antivirus_quarkus-antivirus-icap-service]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-service[`+++quarkus.antivirus.icap.service+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.icap.service+++[]
 endif::add-copy-button-to-config-props[]
@@ -391,7 +391,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |
 
-a| [[quarkus-antivirus_quarkus-antivirus-icap-secure]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-secure[`quarkus.antivirus.icap.secure`]##
+a| [[quarkus-antivirus_quarkus-antivirus-icap-secure]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-secure[`+++quarkus.antivirus.icap.secure+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.icap.secure+++[]
 endif::add-copy-button-to-config-props[]
@@ -412,7 +412,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-icap-scan-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-scan-timeout[`quarkus.antivirus.icap.scan-timeout`]##
+a| [[quarkus-antivirus_quarkus-antivirus-icap-scan-timeout]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-icap-scan-timeout[`+++quarkus.antivirus.icap.scan-timeout+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.icap.scan-timeout+++[]
 endif::add-copy-button-to-config-props[]
@@ -433,7 +433,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |`+++60000+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-virustotal-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-enabled[`quarkus.antivirus.virustotal.enabled`]##
+a| [[quarkus-antivirus_quarkus-antivirus-virustotal-enabled]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-enabled[`+++quarkus.antivirus.virustotal.enabled+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.virustotal.enabled+++[]
 endif::add-copy-button-to-config-props[]
@@ -454,7 +454,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-virustotal-url]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-url[`quarkus.antivirus.virustotal.url`]##
+a| [[quarkus-antivirus_quarkus-antivirus-virustotal-url]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-url[`+++quarkus.antivirus.virustotal.url+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.virustotal.url+++[]
 endif::add-copy-button-to-config-props[]
@@ -475,7 +475,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`+++https://www.virustotal.com/api/v3/files/%s+++`
 
-a| [[quarkus-antivirus_quarkus-antivirus-virustotal-key]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-key[`quarkus.antivirus.virustotal.key`]##
+a| [[quarkus-antivirus_quarkus-antivirus-virustotal-key]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-key[`+++quarkus.antivirus.virustotal.key+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.virustotal.key+++[]
 endif::add-copy-button-to-config-props[]
@@ -496,7 +496,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |
 
-a| [[quarkus-antivirus_quarkus-antivirus-virustotal-minimum-votes]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-minimum-votes[`quarkus.antivirus.virustotal.minimum-votes`]##
+a| [[quarkus-antivirus_quarkus-antivirus-virustotal-minimum-votes]] [.property-path]##link:#quarkus-antivirus_quarkus-antivirus-virustotal-minimum-votes[`+++quarkus.antivirus.virustotal.minimum-votes+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.antivirus.virustotal.minimum-votes+++[]
 endif::add-copy-button-to-config-props[]
