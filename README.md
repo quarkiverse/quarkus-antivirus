@@ -41,7 +41,7 @@ Read the full [Antivirus documentation](https://docs.quarkiverse.io/quarkus-anti
 
 Create a new Antivirus project (with a base Antivirus starter code):
 
-- With [code.quarkus.io](https://code.quarkus.io/?a=Antivirus-bowl&j=17&e=io.quarkiverse.antivirus%3Aquarkus-antivirus)
+- With [code.quarkus.io](https://code.quarkus.io/?a=Antivirus-bowl&j=21&e=io.quarkiverse.antivirus%3Aquarkus-antivirus)
 - With the [Quarkus CLI](https://quarkus.io/guides/cli-tooling):
 
 ```bash
@@ -56,6 +56,15 @@ Or add to you pom.xml directly:
     <version>{project-version}</version>
 </dependency>
 ```
+
+## Compatibility
+
+| Antivirus version | Quarkus version |
+| ----------------- | --------------- |
+| 1.5.x             | 3.33.1+         |
+| 2.x               | 4.0.0.Beta1+    |
+
+2.x targets Quarkus 4 and requires JDK 21. If you are still on Quarkus 3, stay on 1.5.x, which is maintained from the `1.x` branch.
 
 ## Configuration
 

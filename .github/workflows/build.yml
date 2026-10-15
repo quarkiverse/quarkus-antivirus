@@ -42,7 +42,7 @@ jobs:
       matrix:
 #        os: [windows-latest, macos-latest, ubuntu-latest]
         os: [ubuntu-latest]
-        java: ['17', '21']
+        java: ['21', '25']
     runs-on: ${{ matrix.os }}
     steps:
       - name: Prepare git
